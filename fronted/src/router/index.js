@@ -14,8 +14,8 @@ const router = createRouter({
                     component: () => import("../views/Home.vue"),
                 },
                 {
-                    path: "/metrology",
-                    name: "/metrology",
+                    path: "/remain-vagons",
+                    name: "/remain-vagons",
                     component: () => import("../views/Metrology/Metrology.vue"),
                 },
                 {
@@ -29,9 +29,9 @@ const router = createRouter({
                     component: () => import("../views/Metrology/Update.vue"),
                 },
                 {
-                    path: "/metrology-sklad",
-                    name: "/metrology-sklad",
-                    component: () => import("../views/MetrologySklad.vue"),
+                    path: "/remain-vagons",
+                    name: "/remain-vagons",
+                    component: () => import("../views/RemainVagons.vue"),
                 },
                 {
                     path: "/user",
@@ -47,7 +47,22 @@ const router = createRouter({
                     path: "/depo",
                     name: "/depo",
                     component: () => import("../views/Depo.vue"),
-                }
+                },
+                {
+                    path: "/owner",
+                    name: "/owner",
+                    component: () => import("../views/Owner.vue"),
+                },
+                {
+                    path: "/vagon-type",
+                    name: "/vagon-type",
+                    component: () => import("../views/VagonType.vue"),
+                },
+                {
+                    path: "/repair-type",
+                    name: "/repair-type",
+                    component: () => import("../views/RepairType.vue"),
+                },
             ],
         },
         {

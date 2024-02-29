@@ -58,7 +58,7 @@
                 <!-- This slot appears above the options from 'options' prop -->
                 <template #first>
                     <BFormSelectOption :value="null" disabled
-                        >-- Omborxona xodimini tanlang --</BFormSelectOption
+                        >-- Xodimni tanlang --</BFormSelectOption
                     >
                 </template>
             </BFormSelect>
@@ -114,7 +114,7 @@
                 <!-- This slot appears above the options from 'options' prop -->
                 <template #first>
                     <BFormSelectOption :value="null" disabled
-                        >-- Omborxona xodimini tanlang --</BFormSelectOption
+                        >-- Xodimni tanlang --</BFormSelectOption
                     >
                 </template>
             </BFormSelect>
@@ -127,7 +127,7 @@
                 <BTh class="id-tr">ID</BTh>
                 <BTh>Nomi</BTh>
                 <BTh>Rahbar</BTh>
-                <BTh>Omxorxona xodimi</BTh>
+                <BTh>Xodim</BTh>
                 <BTh>Viloyat</BTh>
                 <BTh class="btns"></BTh>
                 <BTh class="btns"></BTh>

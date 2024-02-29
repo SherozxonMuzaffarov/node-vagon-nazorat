@@ -2,7 +2,7 @@
     <div >
       <div class="d-flex align-items-center column-gap-2 mb-3">
         <p class="lead m-0">
-          <i class="bi bi-house-door-fill"></i>Viloyatlar
+          <i class="bi bi-house-door-fill"></i>Vagon egasi
         </p>
         <button class="btn btn-success" @click="modalCreate = !modalCreate">
           <i class="bi bi-plus-lg"></i>
@@ -81,7 +81,7 @@
   // create
   const handleOk = async () => {
     try {
-      let res = await axios.post('/region/create', FormData.value);
+      let res = await axios.post('/owner/create', FormData.value);
       if (res) {
         getAll();
         modalCreate.value = !modalCreate.value;
@@ -97,7 +97,7 @@
   const handleUpdate = async () => {
     let id = FormData.value._id;
     try {
-      let res = await axios.patch('/region/update/' + id, FormData.value);
+      let res = await axios.patch('/owner/update/' + id, FormData.value);
       if (res) {
         getAll();
         modalUpdate.value = !modalUpdate.value;
@@ -116,7 +116,7 @@
       let confirmDelete = confirm('Tasdiqlaysizmi?');
       if (confirmDelete) {
         try {
-          let res = await axios.delete('/region/delete/' + id);
+          let res = await axios.delete('/owner/delete/' + id);
           alert('Ma\'lumot o\'chirildi');
           getAll();
         } catch (error) {
@@ -133,7 +133,7 @@
   // getAll
   let getAll = async () => {
     try {
-      let res = await axios.get('/region/all');
+      let res = await axios.get('/owner/all');
       if (res.data) {
         Data.value = res.data;
       }
@@ -145,7 +145,7 @@
   // getOne
   let getOne = async (id) => {
     try {
-      let res = await axios.get('/region/one/' + id);
+      let res = await axios.get('/owner/one/' + id);
       if (res.data) {
         FormData.value = res.data;
         modalUpdate.value = !modalUpdate.value;

@@ -55,7 +55,6 @@
         placeholder="telefon raqami"
         class="mb-3"
       />
-      <BFormInput v-model="FormData.password" placeholder="paroli" class="mb-3" />
 
       <BFormSelect v-model="FormData.depo_id" :options="depos" class="mb-3">
         <!-- This slot appears above the options from 'options' prop -->

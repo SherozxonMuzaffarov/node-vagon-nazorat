@@ -24,7 +24,6 @@
             <div class="card p-1">
               <!-- Viloyatlar Link (if user role is not 'User') -->
               <BButton
-                v-if="userData.role !== 'User'"
                 variant="outline-link m-0"
                 @click="click"
               >
@@ -35,7 +34,6 @@
 
               <!-- Korxonalar Link (if user role is not 'User') -->
               <BButton
-                v-if="userData.role !== 'User'"
                 variant="outline-link m-0"
                 @click="click"
               >
@@ -43,10 +41,39 @@
                   Korxonalar
                 </router-link>
               </BButton>
+
+              <!-- OWners -->
+              <BButton
+                variant="outline-link m-0"
+                @click="click"
+              >
+                <router-link to="/owner" class="text-decoration-none w-100">
+                  Vagon Egasi
+                </router-link>
+              </BButton>
+
+              <!-- Vagon type -->
+              <BButton
+                variant="outline-link m-0"
+                @click="click"
+              >
+                <router-link to="/vagon-type" class="text-decoration-none w-100">
+                  Vagon turlar
+                </router-link>
+              </BButton>
+
+              <!-- Repair type -->
+              <BButton
+                variant="outline-link m-0"
+                @click="click"
+              >
+                <router-link to="/repair-type" class="text-decoration-none w-100">
+                  Tamir turlari
+                </router-link>
+              </BButton>
   
               <!-- Foydalanuvchilar Link (if user role is not 'User') -->
               <BButton
-                v-if="userData.role !== 'User'"
                 variant="outline-link m-0"
                 @click="click"
               >
@@ -59,23 +86,23 @@
   
           <!-- Shablonlar Section -->
           <BButton v-b-toggle="'collapse-1'" class="mt-2" variant="primary w-100">
-            <i class="bi bi-box"></i> Shablonlar
+            <i class="bi bi-box"></i> Vagonlar nazorati
           </BButton>
   
-          <!-- Collapse Element for Kirim Chiqim Section -->
+          <!-- Collapse Element for Section -->
           <BCollapse id="collapse-1" class="mt-1">
             <div class="card p-1">
               <!-- Sexdagi Link -->
               <BButton variant="outline-link m-0" @click="click">
-                <router-link to="/metrology" class="text-decoration-none w-100">
-                  Sexdagi shablonlar
+                <router-link to="/remain-vagons" class="text-decoration-none w-100">
+                  Qoldiq vagonlar
                 </router-link>
               </BButton>
   
               <!-- Skladdagi Link -->
               <BButton variant="outline-link m-0" @click="click">
-                <router-link to="/metrology-sklad" class="text-decoration-none w-100">
-                  Yangi shablonlar
+                <router-link to="/reparing-wagons" class="text-decoration-none w-100">
+                  Tamirga olingan vagonlar
                 </router-link>
               </BButton>
             </div>
