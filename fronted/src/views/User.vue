@@ -17,11 +17,7 @@
       okTitle="Saqlash"
     >
       <BFormInput v-model="FormData.name" placeholder="FIO" class="mb-3" />
-      <BFormInput
-        v-model="FormData.phone_number"
-        placeholder="telefon raqami"
-        class="mb-3"
-      />
+      <BFormInput v-model="FormData.phone_number" placeholder="telefon raqami" class="mb-3"/>
       <BFormInput v-model="FormData.password" placeholder="parol" class="mb-3" />
 
       <BFormSelect v-model="FormData.depo_id" :options="depos" class="mb-3">
