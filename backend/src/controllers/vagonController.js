@@ -5,7 +5,7 @@ module.exports = {
     getAll: async (req, res) => {
         try {
             const user = myCache.get("userData");
-            let models = await VagonModel.find({}).populate('depo_id', 'name');
+            let models = await VagonModel.find({}).populate('depo_id', 'name').populate('vagon_type_id', 'name').populate('repair_type_id', 'name').populate('owner_id', 'name');
             res.send(models);
             // if (user.role == 'Admin') {
             // } else {
@@ -35,17 +35,25 @@ module.exports = {
 
     create: async (req, res) => {
         try {
-            let { nomi, soni, ishlabChiqarilganYili, raqami, turi, ishi, izoh, depo_id } = req.body;
+            let {
+                nomer,
+                vagon_type_id,
+                repair_type_id,
+                owner_id,
+                year,
+                depo_id,
+                remain_comment,
+            } = req.body;
 
             let model = await VagonModel.create({
-                nomi,
-                soni,
-                ishlabChiqarilganYili,
-                raqami,
-                turi,
-                ishi,
-                izoh,
+                nomer,
+                vagon_type_id,
+                repair_type_id,
+                owner_id,
+                year,
                 depo_id,
+                remain_comment,
+                status: 'remain',
             });
 
             res.json(model);
@@ -58,19 +66,27 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const { nomi, soni, ishlabChiqarilganYili, raqami, turi, ishi, izoh, depo_id } = req.body;
+            const {
+                nomer,
+                vagon_type_id,
+                repair_type_id,
+                owner_id,
+                year,
+                depo_id,
+                remain_comment,
+            } = req.body;
             
             let updatedModel = await VagonModel.findByIdAndUpdate(
                 id,
                 {
-                    nomi,
-                    soni,
-                    ishlabChiqarilganYili,
-                    raqami,
-                    turi,
-                    ishi,
-                    izoh,
+                    nomer,
+                    vagon_type_id,
+                    repair_type_id,
+                    owner_id,
+                    year,
                     depo_id,
+                    remain_comment,
+                    status: 'remain'
                 },
                 { new: true }
             );
@@ -102,4 +118,59 @@ module.exports = {
             res.status(500).json({ message: 'Internal Server Error' });
         }
     },
+
+    generateVagonTable: async(req, res) =>{
+        try {
+            const result = await VagonModel.aggregate([
+                {
+                    $group: {
+                        _id: {
+                            depo_id: "$depo_id",
+                            vagon_type_id: "$vagon_type_id",
+                        },
+                        count: { $sum: 1 },
+                    },
+                },
+                {
+                    $group: {
+                        _id: "$_id.depo_id",
+                        vagon_types: {
+                            $push: {
+                                vagon_type_id: "$_id.vagon_type_id",
+                                count: "$count",
+                            },
+                        },
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "depos", // Use the actual name of the 'Depo' collection
+                        localField: "_id",
+                        foreignField: "_id",
+                        as: "depo_data",
+                    },
+                },
+                {
+                    $unwind: "$depo_data",
+                },
+                {
+                    $project: {
+                        depo_name: "$depo_data.name",
+                        vagon_types: 1,
+                    },
+                },
+                {
+                    $sort: { depo_name: 1 }, // Optional: Sort the result based on depo_name
+                },
+            ]);
+            
+            // Print or use the result as needed
+            console.log(result);
+            
+        res.json(result);
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
 };

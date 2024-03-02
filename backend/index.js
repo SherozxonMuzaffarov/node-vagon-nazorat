@@ -28,9 +28,9 @@ app.use('/user', userRoutes)
 app.use('/depo', depoRoutes)
 app.use('/region', regionRoutes)
 app.use('/owner', ownerRoutes)
-app.use('/vagon', vagonRoutes)
 app.use('/vagon-type', vagonTypeRoutes)
 app.use('/repair-type', repairTypeRoutes)
+app.use('/vagon', vagonRoutes)
 
 app.use((req, res, next) => {
   res.setHeader(

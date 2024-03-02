@@ -108,7 +108,6 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 const modalCreate = ref(false);
 const modalUpdate = ref(false);
-const modalDelete = ref(false);
 const Data = ref([]);
 
 const FormData = ref({

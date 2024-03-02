@@ -14,26 +14,6 @@ const router = createRouter({
                     component: () => import("../views/Home.vue"),
                 },
                 {
-                    path: "/remain-vagons",
-                    name: "/remain-vagons",
-                    component: () => import("../views/Metrology/Metrology.vue"),
-                },
-                {
-                    path: "/metrology/create",
-                    name: "/metrology/create",
-                    component: () => import("../views/Metrology/Create.vue"),
-                },
-                {
-                    path: "/metrology/update/:id",
-                    name: "/metrology/update",
-                    component: () => import("../views/Metrology/Update.vue"),
-                },
-                {
-                    path: "/remain-vagons",
-                    name: "/remain-vagons",
-                    component: () => import("../views/RemainVagons.vue"),
-                },
-                {
                     path: "/user",
                     name: "/user",
                     component: () => import("../views/User.vue"),
@@ -63,6 +43,27 @@ const router = createRouter({
                     name: "/repair-type",
                     component: () => import("../views/RepairType.vue"),
                 },
+                {
+                    path: "/remain-vagons",
+                    name: "/remain-vagons",
+                    component: () => import("../views/RemainVagons.vue"),
+                },
+                {
+                    path: "/repairing-vagons",
+                    name: "/repairing-vagons",
+                    component: () => import("../views/Repairing/Metrology.vue"),
+                },
+                {
+                    path: "/repairing-vagons/create",
+                    name: "/repairing-vagons/create",
+                    component: () => import("../views/Repairing/Create.vue"),
+                },
+                {
+                    path: "/repairing-vagons/update/:id",
+                    name: "/repairing-vagons/update",
+                    component: () => import("../views/Repairing/Update.vue"),
+                },
+                
             ],
         },
         {

@@ -6,7 +6,7 @@
 
     <!-- Modal create -->
     <BModal
-      class="modal-dialog modal-dialog-centered modal-xl"
+      class="modal-dialog modal-xl"
       v-model="modalCreate"
       @ok.prevent="handleOk"
       @keyup.enter="handleOk"
@@ -17,32 +17,25 @@
       <div class="row">
         <div class="col-6">
           <label for="nomer" class="form-label">Vagon nomeri</label>
-          <BFormInput v-model="FormData.nomer" id="nomer" class="mb-3" />
+          <BFormInput v-model="formData.nomer" id="nomer" class="mb-3" />
         </div>
         <div class="col-6">
           <label for="year" class="form-label">Ishlab chiqarilgan yili</label>
-          <BFormInput v-model="FormData.year" id="year" />
+          <BFormInput v-model="formData.year" id="year" />
         </div>
         <div class="col-6">
           <label for="vagonType" class="form-label">Vagon turi</label>
-          <BFormSelect
-            v-model="FormData.vagon_type_id"
-            :options="vagonTypes"
-            id="vagonType"
-            class="mb-3"
-          >
+          <BFormSelect v-model="formData.vagon_type_id" :options="vagonTypes" id="vagonType" class="mb-3" >
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
-              <BFormSelectOption :value="null" disabled
-                >-- vagon turi --</BFormSelectOption
-              >
+              <BFormSelectOption :value="null" disabled >-- vagon turi --</BFormSelectOption >
             </template>
           </BFormSelect>
         </div>
         <div class="col-6">
           <label for="repairType" class="form-label">Tamir Turi</label>
           <BFormSelect
-            v-model="FormData.repair_type_id"
+            v-model="formData.repair_type_id"
             :options="repairTypes"
             id="repairType"
             class="mb-3"
@@ -57,7 +50,7 @@
         </div>
         <div class="col-6">
           <label for="depo" class="form-label">Depo</label>
-          <BFormSelect v-model="FormData.depo_id" :options="depos" id="depo" class="mb-3">
+          <BFormSelect v-model="formData.depo_id" :options="depos" id="depo" class="mb-3">
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
               <BFormSelectOption :value="null" disabled>-- Depo --</BFormSelectOption>
@@ -66,7 +59,7 @@
         </div>
         <div class="col-6">
           <label for="owner" class="form-label">Egasi</label>
-          <BFormSelect v-model="FormData.owner" :options="owners" id="owner" class="mb-3">
+          <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
               <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
@@ -76,7 +69,7 @@
         <div class="col">
           <label for="remainComment" class="form-label">Izoh</label>
           <BFormInput
-            v-model="FormData.remain_comment"
+            v-model="formData.remain_comment"
             id="remainComment"
             class="mb-3"
             placeholder="Izoh"
@@ -98,16 +91,16 @@
       <div class="row">
         <div class="col-6">
           <label for="nomer" class="form-label">Vagon nomeri</label>
-          <BFormInput v-model="FormData.nomer" id="nomer" class="mb-3" />
+          <BFormInput v-model="formData.nomer" id="nomer" class="mb-3" />
         </div>
         <div class="col-6">
           <label for="year" class="form-label">Ishlab chiqarilgan yili</label>
-          <BFormInput v-model="FormData.year" id="year" />
+          <BFormInput v-model="formData.year" id="year" />
         </div>
         <div class="col-6">
           <label for="vagonType" class="form-label">Vagon turi</label>
           <BFormSelect
-            v-model="FormData.vagon_type_id"
+            v-model="formData.vagon_type_id"
             :options="vagonTypes"
             id="vagonType"
             class="mb-3"
@@ -123,7 +116,7 @@
         <div class="col-6">
           <label for="repairType" class="form-label">Tamir Turi</label>
           <BFormSelect
-            v-model="FormData.repair_type_id"
+            v-model="formData.repair_type_id"
             :options="repairTypes"
             id="repairType"
             class="mb-3"
@@ -138,7 +131,7 @@
         </div>
         <div class="col-6">
           <label for="depo" class="form-label">Depo</label>
-          <BFormSelect v-model="FormData.depo_id" :options="depos" id="depo" class="mb-3">
+          <BFormSelect v-model="formData.depo_id" :options="depos" id="depo" class="mb-3">
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
               <BFormSelectOption :value="null" disabled>-- Depo --</BFormSelectOption>
@@ -147,7 +140,7 @@
         </div>
         <div class="col-6">
           <label for="owner" class="form-label">Egasi</label>
-          <BFormSelect v-model="FormData.owner" :options="owners" id="owner" class="mb-3">
+          <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
               <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
@@ -157,16 +150,18 @@
         <div class="col">
           <label for="remainComment" class="form-label">Izoh</label>
           <BFormInput
-            v-model="FormData.remain_comment"
+            v-model="formData.remain_comment"
             id="remainComment"
             class="mb-3"
             placeholder="Izoh"
           />
         </div>
       </div>
+      {{ formData }}
     </BModal>
     <!-- Modal update -->
 
+<!-- Filter -->
     <div class="row mt-5">
       <div class="col-12">
         <div class="card shadow-sm">
@@ -182,7 +177,7 @@
             </button>
             <form th:action="@{/vagons/filter}" method="get" class="row gy-3">
               <div class="col-6">
-                <BFormSelect v-model="FormData.depo_id" :options="depos" id="depo" class="mb-3">
+                <BFormSelect v-model="formData.depo_id" :options="depos" id="depo" class="mb-3">
                   <!-- This slot appears above the options from 'options' prop -->
                   <template #first>
                     <BFormSelectOption :value="null" disabled>-- Depo --</BFormSelectOption>
@@ -191,7 +186,7 @@
               </div>
               <div class="col-6">
                 <BFormSelect
-                  v-model="FormData.vagon_type_id"
+                  v-model="formData.vagon_type_id"
                   :options="vagonTypes"
                   id="vagonType"
                   class="mb-3"
@@ -203,7 +198,7 @@
                 </BFormSelect>
               </div>
               <div class="col">
-                <BFormSelect v-model="FormData.owner" :options="owners" id="owner" class="mb-3">
+                <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
                   <!-- This slot appears above the options from 'options' prop -->
                   <template #first>
                     <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
@@ -221,160 +216,83 @@
         </div>
       </div>
     </div>
-
+{{ deposCount }}
+<!-- Table -->
     <div class="mt-5">
       <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
         <div class="card-body">
-          <table class="table table-striped table-hover table-bordered">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Vagon turlari</th>
-                <th scope="col">VCHD-3</th>
-                <th scope="col">VCHD-5</th>
-                <th scope="col">VCHD-6</th>
-                <th scope="col">Jami</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="align-middle">
-                <th th:text="'Yopiq vagon (крыт)'"></th>
-                <td th:text="${havKritiy}"></td>
-                <td th:text="${andjKritiy}"></td>
-                <td th:text="${samKritiy}"></td>
-                <td th:text="${samKritiy + havKritiy + andjKritiy}"></td>
-              </tr>
-              <tr class="align-middle">
-                <th th:text="'Platforma(пф)'"></th>
-                <td th:text="${havPlatforma}"></td>
-                <td th:text="${andjPlatforma}"></td>
-                <td th:text="${samPlatforma}"></td>
-                <td th:text="${samPlatforma + havPlatforma + andjPlatforma}"></td>
-              </tr>
-
-              <tr class="align-middle">
-                <th>Oxirgi o'zgarish vaqti</th>
-                <td th:text="${havDate}"></td>
-                <td th:text="${andjDate}"></td>
-                <td th:text="${samDate}"></td>
-                <td>
-                  <a class="btn btn-success" th:href="@{/vagons/createTableExcel}">
-                    <i class="bi bi-download"></i>
-                    Yuklab olish
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
+            <BThead class="table-dark">
+              <BTr>
+                <BTh>Vagon Type</BTh>
+                <BTh v-for="depo in deposCount" :key="depo.value">{{ depo  }}</BTh>
+                <BTh>Total</BTh>
+              </BTr>
+            </BThead>
+            <BTbody>
+              <BTr v-for="vagonType in vagonTypesCount" :key="vagonType.vagon_type_id">
+                <BTd>{{ vagonType.vagon_type_id }}</BTd>
+                <BTd v-for="count in vagonType.vagon_counts" :key="count.depo_id">
+                  {{ count.count }}
+                </BTd>
+              </BTr>
+            </BTbody>
+          </BTableSimple>
         </div>
       </div>
     </div>
 
+<!-- List -->
     <div class="mt-5">
       <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
         <div class="card-body">
-          <table class="table table-striped table-hover table-bordered">
-            <thead class="table-dark">
-              <tr class="align-middle">
-                <th scope="col">№</th>
-                <th scope="col">Nomeri</th>
-                <th scope="col">Vagon turi</th>
-                <th scope="col">VCHD</th>
-                <th scope="col">Ta'mir turi</th>
-                <th scope="col">Ishlab chiqarilgan yili</th>
-                <th scope="col">Depoga kelgan vaqti</th>
-                <!--                  <th scope="col">Saqlangan vaqti</th>-->
-                <th scope="col">Egasi</th>
-                <th scope="col">Izoh</th>
-                <th scope="col" class="d-flex justify-content-center">
+          <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
+            <BThead class="table-dark">
+              <BTr class="align-middle">
+                <BTh scope="col">№</BTh>
+                <BTh scope="col">Nomeri</BTh>
+                <BTh scope="col">Ishlab chiqarilgan yili</BTh>
+                <BTh scope="col">Vagon turi</BTh>
+                <BTh scope="col">Ta'mir turi</BTh>
+                <BTh scope="col">Egasi</BTh>
+                <BTh scope="col">VCHD</BTh>
+                <BTh scope="col">Depoga kelgan vaqti</BTh>
+                <BTh scope="col">Izoh</BTh>
+                <BTh scope="col" class="d-flex justify-content-center">
                   Action
-                  <!--                    <a class="btn btn-primary" th:href="@{/vagons/createExcel}" >-->
-                  <!--                      <i class="bi bi-download"></i>-->
-                  <!--                      Yuklab olish-->
-                  <!--                    </a>-->
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                class="align-middle"
-                th:each="vagon, iStat:${vagons}"
-                th:class="${vagon.status == false} ? 'text-danger' : ''"
-              >
-                <th scope="row" th:text="${iStat.count}"></th>
-                <td
-                  th:class="${vagon.status == false} ? 'text-danger' : ''"
-                  th:text="${vagon.nomer}"
-                ></td>
-                <td th:text="${vagon.vagonTuri}"></td>
-                <td th:text="${vagon.depoNomi}"></td>
-                <td th:text="${vagon.remontTuri}"></td>
-                <td th:text="${vagon.ishlabChiqarilganYili}"></td>
-                <td th:text="${vagon.kelganVaqti}">
-                  <!--                    <span th:style="${vagon.status == false and #dates.createNow().daysBetween(#dates.create(vagon.kelganVaqti)).days < 3} ? 'color: red;' : ''"-->
-                  <!--                          th:text="${vagon.kelganVaqti}"></span>-->
-                </td>
-                <!--                  <td th:text="${vagon.createdDate}"></td>-->
-                <td th:text="${vagon.country}"></td>
-                <td th:text="${vagon.izoh}"></td>
-                <td class="d-flex justify-content-center">
-                  <a
-                    class="btn btn-danger"
-                    th:href="@{/vagons/delete/{id}(id=${vagon.id})}"
-                  >
+                </BTh>
+              </BTr>
+            </BThead>
+            <BTbody>
+              <BTr class="align-middle" v-for="(item, index) in Data" :key="item._id" >
+                <BTh class="id-tr" >{{ index + 1 }}</BTh>
+                <BTd >{{ item?.nomer }}</BTd>
+                <BTd >{{ item?.year }}</BTd>
+                <BTd >{{ item?.vagon_type_id?.name }}</BTd>
+                <BTd >{{ item?.repair_type_id?.name }}</BTd>
+                <BTd >{{ item?.owner_id?.name }}</BTd>
+                <BTd >{{ item?.depo_id?.name }}</BTd>
+                <BTd >{{ item?.remain_comment }}</BTd>
+                <BTd >{{ item?.createdAt }}</BTd>
+                <BTd class="d-flex justify-content-center">
+                  <button @click="getOne(item._id)" class="btn btn-primary m-0">
+                    <i class="bi bi-pen-fill"></i>
+                  </button>
+                  <button @click="deleteItem(item._id)" class="btn btn-danger m-0">
                     <i class="bi bi-trash-fill"></i>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </button>
+                </BTd>
+              </BTr>
+            </BTbody>
+          </BTableSimple>
         </div>
       </div>
     </div>
-
-    <!-- Table -->
-    <BTableSimple striped="true" hover="true" bordered="true">
-      <BThead class="table-dark">
-        <BTr class="align-middle">
-          <BTh scope="col">№</BTh>
-          <BTh scope="col">O'V va SU nomlari</BTh>
-          <BTh scope="col">Soni</BTh>
-          <BTh scope="col">Ishlab chiqarilgan yili</BTh>
-          <BTh scope="col">Zavodda ishlab chiqarilgan raqami</BTh>
-          <BTh scope="col">Turi</BTh>
-          <BTh scope="col">Bajaradigan ishi</BTh>
-          <BTh scope="col">VCHD</BTh>
-          <BTh scope="col">Izoh</BTh>
-          <BTh scope="col">Action</BTh>
-          <BTh scope="col" class="d-flex justify-content-center"></BTh>
-          <BTh class="btns"></BTh>
-        </BTr>
-      </BThead>
-      <BTbody>
-        <BTr v-for="(item, index) in Data" :key="item._id" class="align-middle">
-          <BTd>{{ index + 1 }}</BTd>
-          <BTd>{{ item.nomi }}</BTd>
-          <BTd>{{ item.soni }}</BTd>
-          <BTd>{{ item.ishlabChiqarilganYili }}</BTd>
-          <BTd>{{ item.raqami }}</BTd>
-          <BTd>{{ item.turi }}</BTd>
-          <BTd>{{ item.ishi }}</BTd>
-          <BTd>{{ item.depo_id.name }}</BTd>
-          <BTd>{{ item.izoh }}</BTd>
-          <BTd class="btns">
-            <button @click="getOne(item._id)" class="btn btn-primary m-0">
-              <i class="bi bi-pen-fill"></i>
-            </button>
-          </BTd>
-          <BTd class="btns">
-            <button @click="deleteItem(item._id)" class="btn btn-danger m-0">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </BTd>
-        </BTr>
-      </BTbody>
-    </BTableSimple>
-    <!-- Table -->
   </div>
+
+  {{ data }} <br>
+  {{ vagonTypesCount }} <br>
+  {{ deposCount }} <br>
 </template>
 
 <script setup>
@@ -384,64 +302,65 @@ const modalCreate = ref(false);
 const modalUpdate = ref(false);
 const Data = ref([]);
 let depos = ref([]);
+let owners = ref([]);
+let vagonTypes = ref([]);
+let repairTypes = ref([]);
 
-const FormData = ref({
-  id: null,
-  nomi: null,
-  soni: null,
-  ishlabChiqarilganYili: null,
-  raqami: null,
-  turi: null,
-  ishi: null,
-  izoh: null,
+let data = ref([]);
+
+const vagonTypesCount = ref([]);// Assuming you have a predefined list of depo_ids
+let deposCount = ref([]);
+
+//getVagonTable
+let getVagonTable = async () => {
+  try {
+    // Fetch vagon data from the server
+    const response = await axios.get('/vagon/get-vagon-table'); // Replace with your API endpoint
+    data = response.data;
+    vagonTypesCount.value = data.vagonTypes;
+    deposCount.value = data.depos;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+const formData = ref({
+  _id: null,
+  nomer: null,
+  vagon_type_id: null,
+  repair_type_id: null,
+  owner_id: null,
+  year: null,
   depo_id: null,
+  remain_comment: null,
 });
 
 //create
 const handleOk = async () => {
   try {
-    let res = await axios.post("/metrologiya-sklad/create", FormData.value);
-    if (res) {
+    alert("Saqlnamoqchi")
+    let res = await axios.post("/vagon/create", formData.value);
+    if (res.data) {
       getAll();
       modalCreate.value = !modalCreate.value;
-      (FormData.value.id = null),
-        (FormData.value.nomi = null),
-        (FormData.value.soni = null),
-        (FormData.value.ishlabChiqarilganYili = null),
-        (FormData.value.raqami = null),
-        (FormData.value.turi = null),
-        (FormData.value.ishi = null),
-        (FormData.value.izoh = null),
-        (FormData.value.depo_id = null);
+      makeFormNull()
     }
   } catch (error) {
     console.error(error);
   }
 };
 
-// update
-const handleUpdate = async () => {
-  let id = FormData.value._id;
-  try {
-    console.log("ID: " + id);
-    let res = await axios.patch("/metrologiya-sklad/update/" + id, FormData.value);
-    if (res) {
-      getAll();
-      modalUpdate.value = !modalUpdate.value;
-      (FormData.value.id = null),
-        (FormData.value.nomi = null),
-        (FormData.value.soni = null),
-        (FormData.value.ishlabChiqarilganYili = null),
-        (FormData.value.raqami = null),
-        (FormData.value.turi = null),
-        (FormData.value.ishi = null),
-        (FormData.value.izoh = null),
-        (FormData.value.depo_id = null);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
+const makeFormNull = () => {
+  formData.value._id = null,
+  formData.value.nomer = null,
+  formData.value.vagon_type_id = null,
+  formData.value.repair_type_id = null,
+  formData.value.owner_id = null,
+  formData.value.year = null,
+  formData.value.depo_id = null,
+  formData.value.remain_comment = null,
+  formData.value.depo_id = null;
+}
 
 //delete
 const deleteItem = async (id) => {
@@ -450,7 +369,7 @@ const deleteItem = async (id) => {
     let confirmDelete = confirm("Tasdiqlaysizmi?");
     if (confirmDelete) {
       try {
-        let res = await axios.delete("/metrologiya-sklad/delete/" + id);
+        let res = await axios.delete("/vagon/delete/" + id);
         alert("Ma'lumot o'chirildi");
         getAll();
       } catch (error) {
@@ -464,10 +383,10 @@ const deleteItem = async (id) => {
   }
 };
 
-//getAll
+//getAllVagon
 let getAll = async () => {
   try {
-    let res = await axios.get("/metrologiya-sklad/all");
+    let res = await axios.get("/vagon/all");
     if (res.data) {
       Data.value = res.data;
     }
@@ -479,9 +398,9 @@ let getAll = async () => {
 // getOne;
 let getOne = async (id) => {
   try {
-    let res = await axios.get("/metrologiya-sklad/one/" + id);
+    let res = await axios.get("/vagon/one/" + id);
     if (res.data) {
-      FormData.value = res.data;
+      formData.value = res.data;
       modalUpdate.value = !modalUpdate.value;
     }
   } catch (error) {
@@ -494,9 +413,8 @@ let getAllDepos = async () => {
   try {
     let res = await axios.get("/depo/all");
     if (res.data) {
-      console.log(res.data);
-      depos = res.data.map(function (depo) {
-        return { text: depo.name, value: depo._id };
+      depos.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
       });
     }
   } catch (error) {
@@ -504,9 +422,72 @@ let getAllDepos = async () => {
   }
 };
 
+// update
+const handleUpdate = async () => {
+  let id = formData.value._id;
+  try {
+    let res = await axios.patch("/vagon/update/" + id, formData.value);
+    if (res) {
+      getAll();
+      modalUpdate.value = !modalUpdate.value;
+      makeFormNull()
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//getAllOwners
+let getAllOwners = async () => {
+  try {
+    let res = await axios.get("/owner/all");
+    if (res.data) {
+      owners.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//getAllVagonTypes
+let getAllVagonTypes = async () => {
+  try {
+    let res = await axios.get("/vagon-type/all");
+    if (res.data) {
+      vagonTypes.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//getAllRepairTypes
+let getAllRepairTypes = async () => {
+  try {
+    let res = await axios.get("/repair-type/all");
+    if (res.data) {
+      repairTypes.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
 onMounted(() => {
   getAll();
+  getVagonTable();
   getAllDepos();
+  getAllOwners();
+  getAllVagonTypes();
+  getAllRepairTypes();
 });
 </script>
 
