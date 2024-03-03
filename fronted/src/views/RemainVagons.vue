@@ -6,7 +6,7 @@
 
     <!-- Modal create -->
     <BModal
-      class="modal-dialog modal-xl"
+      class="modal-xl"
       v-model="modalCreate"
       @ok.prevent="handleOk"
       @keyup.enter="handleOk"
@@ -81,6 +81,7 @@
 
     <!-- Modal update -->
     <BModal
+      class="modal-xl"
       v-model="modalUpdate"
       @ok.prevent="handleUpdate"
       @keyup.enter="handleUpdate"
@@ -157,9 +158,98 @@
           />
         </div>
       </div>
-      {{ formData }}
     </BModal>
     <!-- Modal update -->
+
+    <!-- Modal Repair -->
+    <BModal
+      v-model="modalInputData"
+      @ok.prevent="handleInputData"
+      @keyup.enter="handleInputData"
+      @cancel="modalInputData = !modalInputData"
+      cancelTitle="Chiqish"
+      okTitle="Saqlash"
+      size="xl"
+      scrollable 
+    >
+      <div class="container bg-yellow d-flex justify-content-center text-black">
+        <h5 >Yon ramalari (bak.ram) </h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="ramaRight1Year" class="form-label">1-o'ng yon ramasi</label>
+          <BFormInput v-model="inputData.ramaRight1Year" id="ramaRight1Year" class="mb-3" placeholder="ishlab chiqarilgan yili" />
+          <BFormInput v-model="inputData.ramaRight1Number" id="ramaRight1Number" class="mb-3" placeholder="nameri"/>
+        </div>
+        <div class="col">
+          <label for="ramaRight2Year" class="form-label">2-o'ng yon ramasi</label>
+          <BFormInput v-model="inputData.ramaRight2Year" id="ramaRight2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.ramaRight2Number" id="ramaRight2Number" class="mb-3" placeholder="nameri"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="ramaLeft1Year" class="form-label">1-chap yon ramasi</label>
+          <BFormInput v-model="inputData.ramaLeft1Year" id="ramaLeft1Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.ramaLeft1Number" id="ramaLeft1Number" class="mb-3" placeholder="nameri"/>
+        </div>
+        <div class="col-6">
+          <label for="ramaLeft2Year" class="form-label">2-chap yon ramasi</label>
+          <BFormInput v-model="inputData.ramaLeft2Year" id="ramaLeft2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.ramaLeft2Number" id="ramaLeft2Number" class="mb-3" placeholder="nameri"/>
+        </div>
+      </div>
+      <div class="container bg-yellow d-flex justify-content-center text-black">
+        <h5 >Ressor usti balkasi</h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="balka1Year" class="form-label">1-balka</label>
+          <BFormInput v-model="inputData.balka1Year" id="balka1Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.balka1Number" id="balka1Number" class="mb-3" placeholder="nameri"/>
+        </div>
+        <div class="col">
+          <label for="balka2Year" class="form-label">2-balka</label>
+          <BFormInput v-model="inputData.balka2Year" id="balka2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.balka2Number" id="balka2Number" class="mb-3" placeholder="nameri"/>
+        </div>
+      </div>
+      <div class="container bg-yellow d-flex justify-content-center text-black">
+        <h5 >G'ildirak juftligi</h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="gildirak1" class="form-label">Gildirak 1</label>
+          <BFormInput v-model="inputData.gildirak1" id="gildirak1" class="mb-3" placeholder="tegishliligi (27,29)"/>
+          <BFormInput v-model="inputData.gildirak1Number" id="gildirak1Number" class="mb-3" placeholder="nomeri (123456)"/>
+        </div>
+        <div class="col">
+          <label for="gildirak2" class="form-label">Gildirak 2</label>
+          <BFormInput v-model="inputData.gildirak2" id="gildirak2" class="mb-3" placeholder="tegishliligi (27,29)" />
+          <BFormInput v-model="inputData.gildirak2Number" id="gildirak2Number" class="mb-3" placeholder="nomeri (123456)" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="gildirak3" class="form-label">Gildirak 3</label>
+          <BFormInput v-model="inputData.gildirak3" id="gildirak3" class="mb-3" placeholder="tegishliligi (27,29)" />
+          <BFormInput v-model="inputData.gildirak3Number" id="gildirak3Number" class="mb-3" placeholder="nomeri (123456)" />
+        </div>
+        <div class="col">
+          <label for="gildirak4" class="form-label">Gildirak 4</label>
+          <BFormInput v-model="inputData.gildirak4" id="gildirak4" class="mb-3" placeholder="tegishliligi (27,29)" />
+          <BFormInput v-model="inputData.gildirak4Number" id="gildirak4Number" class="mb-3" placeholder="nomeri (123456)" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="inputComment" class="form-label">Izoh</label>
+          <BFormInput v-model="inputData.input_comment" id="inputComment" class="mb-3" placeholder="izoh" />
+        </div>
+      </div>
+    </BModal>
+
+    <!-- Modal Repair -->
 
 <!-- Filter -->
     <div class="row mt-5">
@@ -216,28 +306,21 @@
         </div>
       </div>
     </div>
-{{ deposCount }}
+
 <!-- Table -->
     <div class="mt-5">
       <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
         <div class="card-body">
           <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
-            <BThead class="table-dark">
-              <BTr>
-                <BTh>Vagon Type</BTh>
-                <BTh v-for="depo in deposCount" :key="depo.value">{{ depo  }}</BTh>
-                <BTh>Total</BTh>
-              </BTr>
-            </BThead>
-            <BTbody>
-              <BTr v-for="vagonType in vagonTypesCount" :key="vagonType.vagon_type_id">
-                <BTd>{{ vagonType.vagon_type_id }}</BTd>
-                <BTd v-for="count in vagonType.vagon_counts" :key="count.depo_id">
-                  {{ count.count }}
-                </BTd>
-              </BTr>
-            </BTbody>
-          </BTableSimple>
+          <BTbody>
+            <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+              <BTd>{{ row[0] }}</BTd>
+              <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
+                {{ count }}
+              </BTd>
+            </BTr>
+          </BTbody>
+        </BTableSimple>
         </div>
       </div>
     </div>
@@ -278,9 +361,12 @@
                   <button @click="getOne(item._id)" class="btn btn-primary m-0">
                     <i class="bi bi-pen-fill"></i>
                   </button>
-                  <button @click="deleteItem(item._id)" class="btn btn-danger m-0">
-                    <i class="bi bi-trash-fill"></i>
+                  <button @click="addInputData(item._id)" class="btn btn-success m-0">
+                    <i class="bi bi-arrow-up-right-square-fill"></i>
                   </button>
+                  <!-- <button @click="deleteItem(item._id)" class="btn btn-danger m-0">
+                    <i class="bi bi-trash-fill"></i>
+                  </button> -->
                 </BTd>
               </BTr>
             </BTbody>
@@ -289,40 +375,21 @@
       </div>
     </div>
   </div>
-
-  {{ data }} <br>
-  {{ vagonTypesCount }} <br>
-  {{ deposCount }} <br>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import axios from "axios";
 const modalCreate = ref(false);
 const modalUpdate = ref(false);
+const modalInputData = ref(false);
 const Data = ref([]);
 let depos = ref([]);
 let owners = ref([]);
 let vagonTypes = ref([]);
 let repairTypes = ref([]);
 
-let data = ref([]);
-
-const vagonTypesCount = ref([]);// Assuming you have a predefined list of depo_ids
-let deposCount = ref([]);
-
-//getVagonTable
-let getVagonTable = async () => {
-  try {
-    // Fetch vagon data from the server
-    const response = await axios.get('/vagon/get-vagon-table'); // Replace with your API endpoint
-    data = response.data;
-    vagonTypesCount.value = data.vagonTypes;
-    deposCount.value = data.depos;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
+let tableDatas = ref([]);
 
 const formData = ref({
   _id: null,
@@ -335,20 +402,42 @@ const formData = ref({
   remain_comment: null,
 });
 
-//create
-const handleOk = async () => {
-  try {
-    alert("Saqlnamoqchi")
-    let res = await axios.post("/vagon/create", formData.value);
-    if (res.data) {
-      getAll();
-      modalCreate.value = !modalCreate.value;
-      makeFormNull()
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
+const inputData = ref({
+  vagon_id: null,
+
+  ramaRight1Year: null,
+  ramaRight1Number: null,
+
+  ramaRight2Year: null,
+  ramaRight2Number: null,
+
+  ramaLeft1Year: null,
+  ramaLeft1Number: null,
+
+  ramaLeft2Year: null,
+  ramaLeft2Number: null,
+
+  balka1Year: null,
+  balka1Number: null,
+
+  balka2Year: null,
+  balka2Number: null,
+
+  gildirak1: null,
+  gildirak1Number: null,
+
+  gildirak2: null,
+  gildirak2Number: null,
+
+  gildirak3: null,
+  gildirak3Number: null,
+
+  gildirak4: null,
+  gildirak4Number: null,
+
+  input_comment: null,
+});
+
 
 const makeFormNull = () => {
   formData.value._id = null,
@@ -361,6 +450,21 @@ const makeFormNull = () => {
   formData.value.remain_comment = null,
   formData.value.depo_id = null;
 }
+
+//create
+const handleOk = async () => {
+  try {
+    alert("Saqlamoqchi")
+    let res = await axios.post("/vagon/create", formData.value);
+    if (res.data) {
+      getAll();
+      modalCreate.value = !modalCreate.value;
+      makeFormNull()
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 //delete
 const deleteItem = async (id) => {
@@ -408,20 +512,6 @@ let getOne = async (id) => {
   }
 };
 
-//getAllDepos
-let getAllDepos = async () => {
-  try {
-    let res = await axios.get("/depo/all");
-    if (res.data) {
-      depos.value = res.data.map(function (item) {
-        return { text: item.name, value: item._id };
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // update
 const handleUpdate = async () => {
   let id = formData.value._id;
@@ -431,6 +521,20 @@ const handleUpdate = async () => {
       getAll();
       modalUpdate.value = !modalUpdate.value;
       makeFormNull()
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//getAllDepos
+let getAllDepos = async () => {
+  try {
+    let res = await axios.get("/depo/all");
+    if (res.data) {
+      depos.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
+      });
     }
   } catch (error) {
     console.error(error);
@@ -479,16 +583,90 @@ let getAllRepairTypes = async () => {
   }
 };
 
+//getVagonTable
+let getVagonTable = async () => {
+  try {
+    const res = await axios.get('/vagon/get-vagon-table'); // Replace with your API endpoint
 
+    tableDatas.value = res.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+
+// addInputData;
+let addInputData = async (id) => {
+  inputData.value.vagon_id = id
+  modalInputData.value = !modalInputData.value
+};
+
+const makeInputDataNull = () => {
+  inputData.value.vagon_id = null;
+
+  inputData.value.ramaRight1Year = null;
+  inputData.value.ramaRight1Number = null;
+
+  inputData.value.ramaRight2Year = null;
+  inputData.value.ramaRight2Number = null;
+
+  inputData.value.ramaLeft1Year = null;
+  inputData.value.ramaLeft1Number = null;
+
+  inputData.value.ramaLeft2Year = null;
+  inputData.value.ramaLeft2Number = null;
+
+  inputData.value.balka1Year = null;
+  inputData.value.balka1Number = null;
+
+  inputData.value.balka2Year = null;
+  inputData.value.balka2Number = null;
+
+  inputData.value.gildirak1 = null;
+  inputData.value.gildirak1Number = null;
+
+  inputData.value.gildirak2 = null;
+  inputData.value.gildirak2Number = null;
+
+  inputData.value.gildirak3 = null;
+  inputData.value.gildirak3Number = null;
+
+  inputData.value.gildirak4 = null;
+  inputData.value.gildirak4Number = null;
+
+  inputData.value.input_comment = null;
+};
+
+
+//Create Input Data
+const handleInputData = async () => {
+  try {
+    alert("Saqlamoqchi")
+    let res = await axios.post(`/vagon-input-data/${inputData.value.vagon_id}/create`, inputData.value);
+    if (res.data) {
+      modalInputData.value = !modalInputData.value;
+      makeInputDataNull()
+      router.push({ path: "/vagon/repairing-vagons" });
+      getAll();
+      makeFormNull()
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 onMounted(() => {
-  getAll();
-  getVagonTable();
-  getAllDepos();
-  getAllOwners();
-  getAllVagonTypes();
-  getAllRepairTypes();
+   getAll();
+   getVagonTable();
+   getAllDepos();
+   getAllOwners();
+   getAllVagonTypes();
+   getAllRepairTypes();
 });
+
+watchEffect(() => {
+  getVagonTable();
+})
 </script>
 
 <style lang="scss" scoped>

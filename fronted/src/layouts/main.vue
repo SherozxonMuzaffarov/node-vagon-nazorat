@@ -101,7 +101,7 @@
   
               <!-- Skladdagi Link -->
               <BButton variant="outline-link m-0" @click="click">
-                <router-link to="/reparing-wagons" class="text-decoration-none w-100">
+                <router-link to="/vagon/repairing-vagons" class="text-decoration-none w-100">
                   Tamirga olingan vagonlar
                 </router-link>
               </BButton>

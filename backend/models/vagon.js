@@ -32,7 +32,6 @@ const vagonSchema = new mongoose.Schema({
     },
     remain_comment: {
         type: String,
-        required: true
     },
     status: {
         type: String,
