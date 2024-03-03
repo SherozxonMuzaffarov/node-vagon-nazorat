@@ -33,7 +33,7 @@ app.use('/owner', ownerRoutes)
 app.use('/vagon-type', vagonTypeRoutes)
 app.use('/repair-type', repairTypeRoutes)
 app.use('/vagon', vagonRoutes)
-app.use('/vagon-input-data/:id', inputDataRoutes)
+app.use('/vagon-input-data', inputDataRoutes)
 app.use('/vagon-output-data', outputDataRoutes)
 
 app.use((req, res, next) => {

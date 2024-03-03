@@ -51,19 +51,8 @@ const router = createRouter({
                 {
                     path: "/vagon/repairing-vagons",
                     name: "/vagon/repairing-vagons",
-                    component: () => import("../views/Repairing/Metrology.vue"),
-                },
-                {
-                    path: "/repairing-vagons/create",
-                    name: "/repairing-vagons/create",
-                    component: () => import("../views/Repairing/Create.vue"),
-                },
-                {
-                    path: "/repairing-vagons/update/:id",
-                    name: "/repairing-vagons/update",
-                    component: () => import("../views/Repairing/Update.vue"),
-                },
-                
+                    component: () => import("../views/RepairingVagons.vue"),
+                }
             ],
         },
         {
