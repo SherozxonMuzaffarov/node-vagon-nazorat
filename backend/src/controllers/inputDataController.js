@@ -9,7 +9,8 @@ module.exports = {
             let models = await InputData.find().populate({
                 path: 'vagon_id',
                 model: 'VagonModel',  // Replace with the actual name of your VagonModel model
-                match: { status: 'repairing' },
+                match: { status: 'repairing' }
+                ,
             });
             console.log(models);
             res.send(models);
