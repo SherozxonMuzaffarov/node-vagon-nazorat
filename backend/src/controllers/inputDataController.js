@@ -4,6 +4,7 @@ const VagonType = require('../../models/vagonType');
 
 const myCache = require('../../utils/nodeCache');
 
+
 module.exports = {
     getAll: async (req, res) => {
         try {
