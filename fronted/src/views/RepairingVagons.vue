@@ -149,26 +149,20 @@
 
 <!-- List -->
     <div class="mt-5 row">
-      <!-- <div class="align-middle" v-for="(item) in Data" :key="item._id" > -->
         <div class="card shadow-sm" style="overflow: auto; white-space: nowrap; height:100vh">
           <div class="card-header">
             <ul class="nav nav-pills card-header-pills">
               <li class="nav-item" v-for="(item) in depos" :key="item.value">
                 <a class="nav-link" href="#">{{ item.text }}</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">VCHD-6</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
             </ul>
           </div>
           <div class="card-body table-responsive">
             <div class="align-middle col-3" >
-              <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
+              <!-- Inner Card -->
+              <div class="card shadow-sm m-3" style="overflow: auto; white-space: nowrap" v-for="(item) in depos" :key="item.value">
                 <div class="card-header">
-                  Featured
+                  {{ item.text }}
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -181,6 +175,8 @@
                   Card footer
                 </div>
               </div>
+
+              {{ Data }}
             </div>
           </div>
         </div>
@@ -193,6 +189,7 @@ import { ref, onMounted, watchEffect } from "vue";
 import axios from "axios";
 const modalInputData = ref(false);
 const Data = ref([]);
+
 let depos = ref([]);
 let owners = ref([]);
 let vagonTypes = ref([]);
@@ -262,7 +259,7 @@ const deleteItem = async (id) => {
 //getAllVagon
 let getAll = async () => {
   try {
-    let res = await axios.get("/vagon/vagon-input-data");
+    let res = await axios.get("/vagon-input-data/all");
     if (res.data) {
       Data.value = res.data;
     }

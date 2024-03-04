@@ -340,6 +340,7 @@
                 <BTh scope="col">Egasi</BTh>
                 <BTh scope="col">VCHD</BTh>
                 <BTh scope="col">Depoga kelgan vaqti</BTh>
+                <BTh scope="col">Status</BTh>
                 <BTh scope="col">Izoh</BTh>
                 <BTh scope="col" class="d-flex justify-content-center">
                   Action
@@ -355,8 +356,9 @@
                 <BTd >{{ item?.repair_type_id?.name }}</BTd>
                 <BTd >{{ item?.owner_id?.name }}</BTd>
                 <BTd >{{ item?.depo_id?.name }}</BTd>
-                <BTd >{{ item?.remain_comment }}</BTd>
                 <BTd >{{ item?.createdAt }}</BTd>
+                <BTd >{{ item?.status }}</BTd>
+                <BTd >{{ item?.remain_comment }}</BTd>
                 <BTd class="d-flex justify-content-center">
                   <button @click="getOne(item._id)" class="btn btn-primary m-0">
                     <i class="bi bi-pen-fill"></i>
@@ -380,6 +382,10 @@
 <script setup>
 import { ref, onMounted, watchEffect } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
 const modalCreate = ref(false);
 const modalUpdate = ref(false);
 const modalInputData = ref(false);
@@ -647,8 +653,6 @@ const handleInputData = async () => {
       modalInputData.value = !modalInputData.value;
       makeInputDataNull()
       router.push({ path: "/vagon/repairing-vagons" });
-      getAll();
-      makeFormNull()
     }
   } catch (error) {
     console.error(error);

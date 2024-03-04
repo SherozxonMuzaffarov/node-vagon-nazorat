@@ -37,24 +37,9 @@ module.exports = {
 
     create: async (req, res) => {
         try {
-            let {
-                nomer,
-                vagon_type_id,
-                repair_type_id,
-                owner_id,
-                year,
-                depo_id,
-                remain_comment,
-            } = req.body;
 
             let model = await VagonModel.create({
-                nomer,
-                vagon_type_id,
-                repair_type_id,
-                owner_id,
-                year,
-                depo_id,
-                remain_comment,
+                ...req.body,
                 status: 'remain',
             });
 
@@ -150,8 +135,6 @@ module.exports = {
             row.push(totalVagonCount);
                 tableData.push(row);
             }
-
-            console.log(tableData);
 
             res.json(tableData);
         } catch (error) {

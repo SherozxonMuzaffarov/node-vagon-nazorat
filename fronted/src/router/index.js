@@ -10,8 +10,7 @@ const router = createRouter({
             children: [
                 {
                     path: "/",
-                    name: "/home",
-                    component: () => import("../views/Home.vue"),
+                    redirect: {path: '/remain-vagons'}
                 },
                 {
                     path: "/user",

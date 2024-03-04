@@ -41,8 +41,41 @@ module.exports = {
             boss: Joi.object().optional(),
             sklad_xodim: Joi.object().optional(),
             createdAt: Joi.date().optional(),
-            updatedAt: Joi.date().optional()
-    });
+            updatedAt: Joi.date().optional(),
+
+            ramaRight1Year: Joi.number().optional(),
+            ramaRight1Number: Joi.number().optional(),
+
+            ramaRight2Year: Joi.number().optional(),
+            ramaRight2Number: Joi.number().optional(),
+
+            ramaLeft1Year: Joi.number().optional(),
+            ramaLeft1Number: Joi.number().optional(),
+
+            ramaLeft2Year: Joi.number().optional(),
+            ramaLeft2Number: Joi.number().optional(),
+
+            balka1Year: Joi.number().optional(),
+            balka1Number: Joi.number().optional(),
+
+            balka2Year: Joi.number().optional(),
+            balka2Number: Joi.number().optional(),
+
+            gildirak1: Joi.number().optional(),
+            gildirak1Number: Joi.number().optional(),
+
+            gildirak2: Joi.number().optional(),
+            gildirak2Number: Joi.number().optional(),
+
+            gildirak3: Joi.number().optional(),
+            gildirak3Number: Joi.number().optional(),
+
+            gildirak4: Joi.number().optional(),
+            gildirak4Number: Joi.number().optional(),
+
+            input_comment: Joi.optional(),
+            vagon_id: Joi.optional()
+            });
 
         const { error } = schema.validate(req.body);
         if (error) {
