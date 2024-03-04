@@ -9,7 +9,6 @@ router.get('/one/:id', authMiddleware, outputController.getOne)
 router.post('/create', authMiddleware, validations.validate, outputController.create)
 router.patch('/update/:id', authMiddleware, validations.validate, outputController.update)
 router.delete('/delete/:id', authMiddleware, outputController.delete)
-router.get('/get-output-table', authMiddleware, outputController.generateVagonTable)
 
 module.exports = router;
  

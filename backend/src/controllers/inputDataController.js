@@ -1,5 +1,6 @@
 const InputData = require('../../models/inputData');
-const VagonModel = require('../../models/vagon');
+const Vagon = require('../../models/vagon');
+const VagonType = require('../../models/vagonType');
 
 const myCache = require('../../utils/nodeCache');
 
@@ -8,17 +9,32 @@ module.exports = {
         try {
             let models = await InputData.find().populate({
                 path: 'vagon_id',
-                model: 'VagonModel',  // Replace with the actual name of your VagonModel model
-                match: { status: 'repairing' }
-                ,
+                model: 'Vagon',
+                populate: [
+                    {
+                        path: 'vagon_type_id',
+                        model: 'VagonType',
+                        select: 'name',
+                    },
+                    {
+                        path: 'repair_type_id',
+                        model: 'RepairType',
+                        select: 'name',
+                    },
+                ],
             });
+            
+            // models = models.filter((item) => item.vagon_id.status == 'repairing')
+            
             console.log(models);
+
             res.send(models);
         } catch (error) {
             console.error(error);
             res.status(500).json({ name: 'Internal Server Error' });
         }
     },
+    
 
     getOne: async (req, res) => {
         try {
@@ -38,7 +54,7 @@ module.exports = {
     create: async (req, res) => {
         const { vagon_id } = req.body
         try {
-            let updatedModel = await VagonModel.findByIdAndUpdate(
+            let updatedModel = await Vagon.findByIdAndUpdate(
                 {_id: vagon_id},
                 {
                     status: 'repairing'
@@ -57,29 +73,11 @@ module.exports = {
 
     update: async (req, res) => {
         try {
-            const { id } = req.params;
-            const {
-                nomer,
-                vagon_type_id,
-                repair_type_id,
-                owner_id,
-                year,
-                depo_id,
-                remain_comment,
-            } = req.body;
-            
+            const { id } = req.params; 
+            console.log('Id: ' + id);    
             let updatedModel = await InputData.findByIdAndUpdate(
                 id,
-                {
-                    nomer,
-                    vagon_type_id,
-                    repair_type_id,
-                    owner_id,
-                    year,
-                    depo_id,
-                    remain_comment,
-                    status: 'remain'
-                },
+                req.body,
                 { new: true }
             );
 

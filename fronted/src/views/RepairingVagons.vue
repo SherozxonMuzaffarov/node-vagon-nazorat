@@ -4,12 +4,12 @@
       <p class="lead m-0"><i class="bi bi-house-door-fill"></i>Tamirga olingan vagonlar</p>
     </div>
 
-    <!-- Modal Repair -->
+    <!-- Modal Repair update -->
     <BModal
-      v-model="modalInputData"
-      @ok.prevent="handleInputData"
-      @keyup.enter="handleInputData"
-      @cancel="modalInputData = !modalInputData"
+      v-model="modalInputDataUpdate"
+      @ok.prevent="updateInputData"
+      @keyup.enter="updateInputData"
+      @cancel="modalInputDataUpdate = !modalInputDataUpdate"
       cancelTitle="Chiqish"
       okTitle="Saqlash"
       size="xl"
@@ -91,61 +91,96 @@
         </div>
       </div>
     </BModal>
-
     <!-- Modal Repair -->
 
-<!-- Filter -->
-    <!-- <div class="row mt-5">
-      <div class="col-12">
-        <div class="card shadow-sm">
-          <div class="card-body d-flex justify-content-center align-items-center">
-            <button
-              class="btn btn-success d-flex align-items-center fs-5 me-5"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              @click="modalCreate = !modalCreate"
-            >
-              <i class="bi bi-plus-circle me-2"></i>
-              <span>Vagon qo'shish</span>
-            </button>
-            <form th:action="@{/vagons/filter}" method="get" class="row gy-3">
-              <div class="col-6">
-                <BFormSelect v-model="formData.depo_id" :options="depos" id="depo" class="mb-3">
-                  <template #first>
-                    <BFormSelectOption :value="null" disabled>-- Depo --</BFormSelectOption>
-                  </template>
-                </BFormSelect>
-              </div>
-              <div class="col-6">
-                <BFormSelect
-                  v-model="formData.vagon_type_id"
-                  :options="vagonTypes"
-                  id="vagonType"
-                  class="mb-3"
-                >
-                 <template #first>
-                    <BFormSelectOption :value="null" disabled>-- Vagon turi --</BFormSelectOption>
-                  </template>
-                </BFormSelect>
-              </div>
-              <div class="col">
-                <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
-                  <template #first>
-                    <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
-                  </template>
-                </BFormSelect>
-              </div>
-              <div class="col">
-                <button class="mx-auto btn btn-primary w-100" type="submit">
-                  <i class="bi bi-funnel"></i>
-                  <span>Filter</span>
-                </button>
-              </div>
-            </form>
-          </div>
+    <!-- Modal OutPut Data create -->
+    <BModal
+      v-model="modalOutputData"
+      @ok.prevent="handleOutputData"
+      @keyup.enter="handleOutputData"
+      @cancel="modalOutputData = !modalOutputData"
+      cancelTitle="Chiqish"
+      okTitle="Saqlash"
+      size="xl"
+      scrollable 
+    >
+      <div class="container bg-yellow d-flex justify-content-center text-black">
+        <h5 >Yon ramalari (bak.ram) </h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="ramaRight1Year" class="form-label">1-o'ng yon ramasi</label>
+          <BFormInput v-model="inputData.ramaRight1Year" id="ramaRight1Year" class="mb-3" placeholder="ishlab chiqarilgan yili" />
+          <BFormInput v-model="inputData.ramaRight1Number" id="ramaRight1Number" class="mb-3" placeholder="nameri"/>
+        </div>
+        <div class="col">
+          <label for="ramaRight2Year" class="form-label">2-o'ng yon ramasi</label>
+          <BFormInput v-model="inputData.ramaRight2Year" id="ramaRight2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.ramaRight2Number" id="ramaRight2Number" class="mb-3" placeholder="nameri"/>
         </div>
       </div>
-    </div> -->
+      <div class="row">
+        <div class="col">
+          <label for="ramaLeft1Year" class="form-label">1-chap yon ramasi</label>
+          <BFormInput v-model="inputData.ramaLeft1Year" id="ramaLeft1Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.ramaLeft1Number" id="ramaLeft1Number" class="mb-3" placeholder="nameri"/>
+        </div>
+        <div class="col-6">
+          <label for="ramaLeft2Year" class="form-label">2-chap yon ramasi</label>
+          <BFormInput v-model="inputData.ramaLeft2Year" id="ramaLeft2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.ramaLeft2Number" id="ramaLeft2Number" class="mb-3" placeholder="nameri"/>
+        </div>
+      </div>
+      <div class="container bg-yellow d-flex justify-content-center text-black">
+        <h5 >Ressor usti balkasi</h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="balka1Year" class="form-label">1-balka</label>
+          <BFormInput v-model="inputData.balka1Year" id="balka1Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.balka1Number" id="balka1Number" class="mb-3" placeholder="nameri"/>
+        </div>
+        <div class="col">
+          <label for="balka2Year" class="form-label">2-balka</label>
+          <BFormInput v-model="inputData.balka2Year" id="balka2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
+          <BFormInput v-model="inputData.balka2Number" id="balka2Number" class="mb-3" placeholder="nameri"/>
+        </div>
+      </div>
+      <div class="container bg-yellow d-flex justify-content-center text-black">
+        <h5 >G'ildirak juftligi</h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="gildirak1" class="form-label">Gildirak 1</label>
+          <BFormInput v-model="inputData.gildirak1" id="gildirak1" class="mb-3" placeholder="tegishliligi (27,29)"/>
+          <BFormInput v-model="inputData.gildirak1Number" id="gildirak1Number" class="mb-3" placeholder="nomeri (123456)"/>
+        </div>
+        <div class="col">
+          <label for="gildirak2" class="form-label">Gildirak 2</label>
+          <BFormInput v-model="inputData.gildirak2" id="gildirak2" class="mb-3" placeholder="tegishliligi (27,29)" />
+          <BFormInput v-model="inputData.gildirak2Number" id="gildirak2Number" class="mb-3" placeholder="nomeri (123456)" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="gildirak3" class="form-label">Gildirak 3</label>
+          <BFormInput v-model="inputData.gildirak3" id="gildirak3" class="mb-3" placeholder="tegishliligi (27,29)" />
+          <BFormInput v-model="inputData.gildirak3Number" id="gildirak3Number" class="mb-3" placeholder="nomeri (123456)" />
+        </div>
+        <div class="col">
+          <label for="gildirak4" class="form-label">Gildirak 4</label>
+          <BFormInput v-model="inputData.gildirak4" id="gildirak4" class="mb-3" placeholder="tegishliligi (27,29)" />
+          <BFormInput v-model="inputData.gildirak4Number" id="gildirak4Number" class="mb-3" placeholder="nomeri (123456)" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="inputComment" class="form-label">Izoh</label>
+          <BFormInput v-model="inputData.input_comment" id="inputComment" class="mb-3" placeholder="izoh" />
+        </div>
+      </div>
+    </BModal>
+    <!-- Modal OutPut Data create -->
 
 <!-- List -->
     <div class="mt-5 row">
@@ -158,21 +193,128 @@
             </ul>
           </div>
           <div class="card-body table-responsive">
-            <div class="align-middle col-3" >
+            <div class="align-middle row" >
               <!-- Inner Card -->
-              <div class="card shadow-sm m-3" style="overflow: auto; white-space: nowrap" v-for="(item) in depos" :key="item.value">
-                <div class="card-header">
-                  {{ item.text }}
+              <div class="card shadow-sm m-3 col-3" style="overflow: auto; white-space: nowrap" v-for="(item) in Data" :key="item._id">
+                <div class="card-header ">
+                  {{ item.vagon_id?.nomer }}
+                  {{ item.vagon_id?.vagon_type_id?.name }}
+                  {{ item.vagon_id?.repair_type_id?.name }}
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                  <!-- Yon ramalari -->
+                  <div>
+                    <h6 class="card-title ">Yon ramalari</h6>
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
+                        <p class="card-text my-0">Yili</p>
+                        <p class="card-text my-0">Nomeri</p>
+                      </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">1-o'ng yon ramalari</h6> 
+                        <p class="card-text my-0">{{ item.ramaRight1Year }}</p>
+                        <p class="card-text my-0">{{ item.ramaRight1Number }}</p>
+                      </div>
+                      <div class="col">
+                      <h6 class="card-subtitle mb-2 text-body-secondary">2-o'ng yon ramalari</h6> 
+                        <p class="card-text my-0 ">{{ item.ramaRight2Year }}</p>
+                        <p class="card-text my-0">{{ item.ramaRight2Number }}</p>
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-2">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
+                        <p class="card-text my-0">Yili</p>
+                        <p class="card-text my-0">Nomeri</p>
+                      </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">1-chap yon ramalari</h6> 
+                        <p class="card-text my-0">{{ item.ramaLeft1Year }}</p>
+                        <p class="card-text my-0">{{ item.ramaLeft1Number }}</p>
+                      </div>
+                      <div class="col">
+                      <h6 class="card-subtitle mb-2 text-body-secondary">2-chap yon ramalari</h6> 
+                        <p class="card-text my-0 ">{{ item.ramaLeft2Year }}</p>
+                        <p class="card-text my-0">{{ item.ramaLeft2Number }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Ressor ustki balkasi -->
+                  <div>
+                    <h6 class="card-title mt-4">Ressor ustki balkasi</h6>
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
+                        <p class="card-text my-0">Yili</p>
+                        <p class="card-text my-0">Nomeri</p>
+                      </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">1-balka</h6> 
+                        <p class="card-text my-0">{{ item.balka1Year }}</p>
+                        <p class="card-text my-0">{{ item.balka1Number }}</p>
+                      </div>
+                      <div class="col">
+                      <h6 class="card-subtitle mb-2 text-body-secondary">2-balka</h6> 
+                      <p class="card-text my-0">{{ item.balka2Year }}</p>
+                        <p class="card-text my-0">{{ item.balka2Number }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- G'ildirak juftliklari -->
+                  <div>
+                    <h6 class="card-title mt-4">G'ildirak juftliklari</h6>
+                    <div class="row">
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
+                        <p class="card-text my-0">Tegishliligi</p>
+                        <p class="card-text my-0">Nomeri</p>
+                      </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 1</h6> 
+                        <p class="card-text my-0">{{ item.gildirak1 }}</p>
+                        <p class="card-text my-0">{{ item.gildirak1Number }}</p>
+                      </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 2</h6> 
+                        <p class="card-text my-0">{{ item.gildirak2 }}</p>
+                        <p class="card-text my-0">{{ item.gildirak2Number }}</p>
+                      </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col">
+                          <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
+                          <p class="card-text my-0">Tegishliligi</p>
+                          <p class="card-text my-0">Nomeri</p>
+                        </div>
+                        <div class="col">
+                          <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 3</h6> 
+                          <p class="card-text my-0">{{ item.gildirak3 }}</p>
+                          <p class="card-text my-0">{{ item.gildirak3Number }}</p>
+                        </div>
+                        <div class="col">
+                          <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 4</h6> 
+                          <p class="card-text my-0">{{ item.gildirak4 }}</p>
+                          <p class="card-text my-0">{{ item.gildirak4Number }}</p>
+                        </div>
+                      </div>
+                    <div class="row mt-4">
+
+                    <div class="col">
+                      Izoh: {{ item.input_comment }}
+                    </div>
+                  </div>   
+                  </div>                            
                 </div>
                 <div class="card-footer">
-                  Card footer
+                  <button @click="getOne(item._id)" class="btn btn-primary m-0">
+                    <i class="bi bi-pen-fill"></i>
+                  </button>
+                  <button @click="addOutputData(item.vagon_id._id)" class="btn btn-success m-0">
+                    <i class="bi bi-arrow-up-right-square-fill"></i>
+                  </button>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
                 </div>
               </div>
 
@@ -187,16 +329,11 @@
 <script setup>
 import { ref, onMounted, watchEffect } from "vue";
 import axios from "axios";
-const modalInputData = ref(false);
+const modalInputDataUpdate = ref(false);
+const modalOutputData = ref(false);
 const Data = ref([]);
 
 let depos = ref([]);
-let owners = ref([]);
-let vagonTypes = ref([]);
-let repairTypes = ref([]);
-
-let tableDatas = ref([]);
-
 
 const inputData = ref({
   vagon_id: null,
@@ -235,33 +372,13 @@ const inputData = ref({
 });
 
 
-//delete
-const deleteItem = async (id) => {
-  try {
-    if (!id) return;
-    let confirmDelete = confirm("Tasdiqlaysizmi?");
-    if (confirmDelete) {
-      try {
-        let res = await axios.delete("/vagon/delete/" + id);
-        alert("Ma'lumot o'chirildi");
-        getAll();
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      console.log("Delete cancelled");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 //getAllVagon
 let getAll = async () => {
   try {
     let res = await axios.get("/vagon-input-data/all");
     if (res.data) {
       Data.value = res.data;
+      console.log(res.data);
     }
   } catch (error) {
     console.error(error);
@@ -271,103 +388,14 @@ let getAll = async () => {
 // getOne;
 let getOne = async (id) => {
   try {
-    let res = await axios.get("/vagon/one/" + id);
+    let res = await axios.get("/vagon-input-data/one/" + id);
     if (res.data) {
-      formData.value = res.data;
-      modalUpdate.value = !modalUpdate.value;
+      inputData.value = res.data;
+      modalInputDataUpdate.value = !modalInputDataUpdate.value;
     }
   } catch (error) {
     console.error(error);
   }
-};
-
-// update
-const handleUpdate = async () => {
-  let id = formData.value._id;
-  try {
-    let res = await axios.patch("/vagon/update/" + id, formData.value);
-    if (res) {
-      getAll();
-      modalUpdate.value = !modalUpdate.value;
-      makeFormNull()
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//getAllDepos
-let getAllDepos = async () => {
-  try {
-    let res = await axios.get("/depo/all");
-    if (res.data) {
-      depos.value = res.data.map(function (item) {
-        return { text: item.name, value: item._id };
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//getAllOwners
-let getAllOwners = async () => {
-  try {
-    let res = await axios.get("/owner/all");
-    if (res.data) {
-      owners.value = res.data.map(function (item) {
-        return { text: item.name, value: item._id };
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//getAllVagonTypes
-let getAllVagonTypes = async () => {
-  try {
-    let res = await axios.get("/vagon-type/all");
-    if (res.data) {
-      vagonTypes.value = res.data.map(function (item) {
-        return { text: item.name, value: item._id };
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//getAllRepairTypes
-let getAllRepairTypes = async () => {
-  try {
-    let res = await axios.get("/repair-type/all");
-    if (res.data) {
-      repairTypes.value = res.data.map(function (item) {
-        return { text: item.name, value: item._id };
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//getVagonTable
-let getVagonTable = async () => {
-  try {
-    const res = await axios.get('/vagon/get-vagon-table'); // Replace with your API endpoint
-
-    tableDatas.value = res.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-
-
-// addInputData;
-let addInputData = async (id) => {
-  inputData.value.vagon_id = id
-  modalInputData.value = !modalInputData.value
 };
 
 const makeInputDataNull = () => {
@@ -408,34 +436,92 @@ const makeInputDataNull = () => {
 
 
 //Create Input Data
-const handleInputData = async () => {
+const updateInputData = async () => {
   try {
-    alert("Saqlamoqchi")
-    let res = await axios.post(`/vagon-input-data/${inputData.value.vagon_id}/create`, inputData.value);
+    console.log("inputData.value " + inputData.value);
+    let res = await axios.patch(`/vagon-input-data/update/${inputData.value._id}`, inputData.value);
     if (res.data) {
-      modalInputData.value = !modalInputData.value;
+      modalInputDataUpdate.value = !modalInputDataUpdate.value;
       makeInputDataNull()
-      router.push({ path: "/vagon/repairing-vagons" });
-      getAll();
-      makeFormNull()
+      getAll()
     }
   } catch (error) {
     console.error(error);
   }
 };
 
+// addInputData;
+let addOutputData = async (id) => {
+  inputData.value.vagon_id = id
+  modalOutputData.value = !modalOutputData.value
+};
+
+
+
+
+// Create OutPut Data
+const handleOutputData = async () => {
+  try {
+    let res = await axios.post("/vagon-output-data/create/", inputData.value);
+    if (res) {
+      getAll();
+      modalOutputData.value = !modalOutputData.value;
+      makeInputDataNull()
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
+
+
+//delete
+const deleteItem = async (id) => {
+  try {
+    if (!id) return;
+    let confirmDelete = confirm("Tasdiqlaysizmi?");
+    if (confirmDelete) {
+      try {
+        let res = await axios.delete("/vagon/delete/" + id);
+        alert("Ma'lumot o'chirildi");
+        getAll();
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("Delete cancelled");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+//getAllDepos
+let getAllDepos = async () => {
+  try {
+    let res = await axios.get("/depo/all");
+    if (res.data) {
+      depos.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
+
+
 onMounted(() => {
    getAll();
-   getVagonTable();
    getAllDepos();
-   getAllOwners();
-   getAllVagonTypes();
-   getAllRepairTypes();
 });
 
-watchEffect(() => {
-  getVagonTable();
-})
 </script>
 
 <style lang="scss" scoped>
