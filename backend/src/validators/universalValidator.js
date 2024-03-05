@@ -74,6 +74,7 @@ module.exports = {
             gildirak4Number: Joi.number().optional(),
 
             input_comment: Joi.optional(),
+            output_comment: Joi.optional(),
             vagon_id: Joi.optional()
             });
 

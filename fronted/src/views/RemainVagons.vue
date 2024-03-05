@@ -25,10 +25,17 @@
         </div>
         <div class="col-6">
           <label for="vagonType" class="form-label">Vagon turi</label>
-          <BFormSelect v-model="formData.vagon_type_id" :options="vagonTypes" id="vagonType" class="mb-3" >
+          <BFormSelect
+            v-model="formData.vagon_type_id"
+            :options="vagonTypes"
+            id="vagonType"
+            class="mb-3"
+          >
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
-              <BFormSelectOption :value="null" disabled >-- vagon turi --</BFormSelectOption >
+              <BFormSelectOption :value="null" disabled
+                >-- vagon turi --</BFormSelectOption
+              >
             </template>
           </BFormSelect>
         </div>
@@ -59,7 +66,12 @@
         </div>
         <div class="col-6">
           <label for="owner" class="form-label">Egasi</label>
-          <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
+          <BFormSelect
+            v-model="formData.owner_id"
+            :options="owners"
+            id="owner"
+            class="mb-3"
+          >
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
               <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
@@ -141,7 +153,12 @@
         </div>
         <div class="col-6">
           <label for="owner" class="form-label">Egasi</label>
-          <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
+          <BFormSelect
+            v-model="formData.owner_id"
+            :options="owners"
+            id="owner"
+            class="mb-3"
+          >
             <!-- This slot appears above the options from 'options' prop -->
             <template #first>
               <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
@@ -170,88 +187,193 @@
       cancelTitle="Chiqish"
       okTitle="Saqlash"
       size="xl"
-      scrollable 
+      scrollable
     >
       <div class="container bg-yellow d-flex justify-content-center text-black">
-        <h5 >Yon ramalari (bak.ram) </h5>
+        <h5>Yon ramalari (bak.ram)</h5>
       </div>
       <div class="row">
         <div class="col">
           <label for="ramaRight1Year" class="form-label">1-o'ng yon ramasi</label>
-          <BFormInput v-model="inputData.ramaRight1Year" id="ramaRight1Year" class="mb-3" placeholder="ishlab chiqarilgan yili" />
-          <BFormInput v-model="inputData.ramaRight1Number" id="ramaRight1Number" class="mb-3" placeholder="nameri"/>
+          <BFormInput
+            v-model="inputData.ramaRight1Year"
+            id="ramaRight1Year"
+            class="mb-3"
+            placeholder="ishlab chiqarilgan yili"
+          />
+          <BFormInput
+            v-model="inputData.ramaRight1Number"
+            id="ramaRight1Number"
+            class="mb-3"
+            placeholder="nameri"
+          />
         </div>
         <div class="col">
           <label for="ramaRight2Year" class="form-label">2-o'ng yon ramasi</label>
-          <BFormInput v-model="inputData.ramaRight2Year" id="ramaRight2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
-          <BFormInput v-model="inputData.ramaRight2Number" id="ramaRight2Number" class="mb-3" placeholder="nameri"/>
+          <BFormInput
+            v-model="inputData.ramaRight2Year"
+            id="ramaRight2Year"
+            class="mb-3"
+            placeholder="ishlab chiqarilgan yili"
+          />
+          <BFormInput
+            v-model="inputData.ramaRight2Number"
+            id="ramaRight2Number"
+            class="mb-3"
+            placeholder="nameri"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col">
           <label for="ramaLeft1Year" class="form-label">1-chap yon ramasi</label>
-          <BFormInput v-model="inputData.ramaLeft1Year" id="ramaLeft1Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
-          <BFormInput v-model="inputData.ramaLeft1Number" id="ramaLeft1Number" class="mb-3" placeholder="nameri"/>
+          <BFormInput
+            v-model="inputData.ramaLeft1Year"
+            id="ramaLeft1Year"
+            class="mb-3"
+            placeholder="ishlab chiqarilgan yili"
+          />
+          <BFormInput
+            v-model="inputData.ramaLeft1Number"
+            id="ramaLeft1Number"
+            class="mb-3"
+            placeholder="nameri"
+          />
         </div>
         <div class="col-6">
           <label for="ramaLeft2Year" class="form-label">2-chap yon ramasi</label>
-          <BFormInput v-model="inputData.ramaLeft2Year" id="ramaLeft2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
-          <BFormInput v-model="inputData.ramaLeft2Number" id="ramaLeft2Number" class="mb-3" placeholder="nameri"/>
+          <BFormInput
+            v-model="inputData.ramaLeft2Year"
+            id="ramaLeft2Year"
+            class="mb-3"
+            placeholder="ishlab chiqarilgan yili"
+          />
+          <BFormInput
+            v-model="inputData.ramaLeft2Number"
+            id="ramaLeft2Number"
+            class="mb-3"
+            placeholder="nameri"
+          />
         </div>
       </div>
       <div class="container bg-yellow d-flex justify-content-center text-black">
-        <h5 >Ressor usti balkasi</h5>
+        <h5>Ressor usti balkasi</h5>
       </div>
       <div class="row">
         <div class="col">
           <label for="balka1Year" class="form-label">1-balka</label>
-          <BFormInput v-model="inputData.balka1Year" id="balka1Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
-          <BFormInput v-model="inputData.balka1Number" id="balka1Number" class="mb-3" placeholder="nameri"/>
+          <BFormInput
+            v-model="inputData.balka1Year"
+            id="balka1Year"
+            class="mb-3"
+            placeholder="ishlab chiqarilgan yili"
+          />
+          <BFormInput
+            v-model="inputData.balka1Number"
+            id="balka1Number"
+            class="mb-3"
+            placeholder="nameri"
+          />
         </div>
         <div class="col">
           <label for="balka2Year" class="form-label">2-balka</label>
-          <BFormInput v-model="inputData.balka2Year" id="balka2Year" class="mb-3" placeholder="ishlab chiqarilgan yili"/>
-          <BFormInput v-model="inputData.balka2Number" id="balka2Number" class="mb-3" placeholder="nameri"/>
+          <BFormInput
+            v-model="inputData.balka2Year"
+            id="balka2Year"
+            class="mb-3"
+            placeholder="ishlab chiqarilgan yili"
+          />
+          <BFormInput
+            v-model="inputData.balka2Number"
+            id="balka2Number"
+            class="mb-3"
+            placeholder="nameri"
+          />
         </div>
       </div>
       <div class="container bg-yellow d-flex justify-content-center text-black">
-        <h5 >G'ildirak juftligi</h5>
+        <h5>G'ildirak juftligi</h5>
       </div>
       <div class="row">
         <div class="col">
           <label for="gildirak1" class="form-label">Gildirak 1</label>
-          <BFormInput v-model="inputData.gildirak1" id="gildirak1" class="mb-3" placeholder="tegishliligi (27,29)"/>
-          <BFormInput v-model="inputData.gildirak1Number" id="gildirak1Number" class="mb-3" placeholder="nomeri (123456)"/>
+          <BFormInput
+            v-model="inputData.gildirak1"
+            id="gildirak1"
+            class="mb-3"
+            placeholder="tegishliligi (27,29)"
+          />
+          <BFormInput
+            v-model="inputData.gildirak1Number"
+            id="gildirak1Number"
+            class="mb-3"
+            placeholder="nomeri (123456)"
+          />
         </div>
         <div class="col">
           <label for="gildirak2" class="form-label">Gildirak 2</label>
-          <BFormInput v-model="inputData.gildirak2" id="gildirak2" class="mb-3" placeholder="tegishliligi (27,29)" />
-          <BFormInput v-model="inputData.gildirak2Number" id="gildirak2Number" class="mb-3" placeholder="nomeri (123456)" />
+          <BFormInput
+            v-model="inputData.gildirak2"
+            id="gildirak2"
+            class="mb-3"
+            placeholder="tegishliligi (27,29)"
+          />
+          <BFormInput
+            v-model="inputData.gildirak2Number"
+            id="gildirak2Number"
+            class="mb-3"
+            placeholder="nomeri (123456)"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col">
           <label for="gildirak3" class="form-label">Gildirak 3</label>
-          <BFormInput v-model="inputData.gildirak3" id="gildirak3" class="mb-3" placeholder="tegishliligi (27,29)" />
-          <BFormInput v-model="inputData.gildirak3Number" id="gildirak3Number" class="mb-3" placeholder="nomeri (123456)" />
+          <BFormInput
+            v-model="inputData.gildirak3"
+            id="gildirak3"
+            class="mb-3"
+            placeholder="tegishliligi (27,29)"
+          />
+          <BFormInput
+            v-model="inputData.gildirak3Number"
+            id="gildirak3Number"
+            class="mb-3"
+            placeholder="nomeri (123456)"
+          />
         </div>
         <div class="col">
           <label for="gildirak4" class="form-label">Gildirak 4</label>
-          <BFormInput v-model="inputData.gildirak4" id="gildirak4" class="mb-3" placeholder="tegishliligi (27,29)" />
-          <BFormInput v-model="inputData.gildirak4Number" id="gildirak4Number" class="mb-3" placeholder="nomeri (123456)" />
+          <BFormInput
+            v-model="inputData.gildirak4"
+            id="gildirak4"
+            class="mb-3"
+            placeholder="tegishliligi (27,29)"
+          />
+          <BFormInput
+            v-model="inputData.gildirak4Number"
+            id="gildirak4Number"
+            class="mb-3"
+            placeholder="nomeri (123456)"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col">
           <label for="inputComment" class="form-label">Izoh</label>
-          <BFormInput v-model="inputData.input_comment" id="inputComment" class="mb-3" placeholder="izoh" />
+          <BFormInput
+            v-model="inputData.input_comment"
+            id="inputComment"
+            class="mb-3"
+            placeholder="izoh"
+          />
         </div>
       </div>
     </BModal>
 
     <!-- Modal Repair -->
 
-<!-- Filter -->
+    <!-- Filter -->
     <div class="row mt-5">
       <div class="col-12">
         <div class="card shadow-sm">
@@ -267,10 +389,17 @@
             </button>
             <form th:action="@{/vagons/filter}" method="get" class="row gy-3">
               <div class="col-6">
-                <BFormSelect v-model="formData.depo_id" :options="depos" id="depo" class="mb-3">
+                <BFormSelect
+                  v-model="formData.depo_id"
+                  :options="depos"
+                  id="depo"
+                  class="mb-3"
+                >
                   <!-- This slot appears above the options from 'options' prop -->
                   <template #first>
-                    <BFormSelectOption :value="null" disabled>-- Depo --</BFormSelectOption>
+                    <BFormSelectOption :value="null" disabled
+                      >-- Depo --</BFormSelectOption
+                    >
                   </template>
                 </BFormSelect>
               </div>
@@ -281,17 +410,26 @@
                   id="vagonType"
                   class="mb-3"
                 >
-                 <!-- This slot appears above the options from 'options' prop -->
-                 <template #first>
-                    <BFormSelectOption :value="null" disabled>-- Vagon turi --</BFormSelectOption>
+                  <!-- This slot appears above the options from 'options' prop -->
+                  <template #first>
+                    <BFormSelectOption :value="null" disabled
+                      >-- Vagon turi --</BFormSelectOption
+                    >
                   </template>
                 </BFormSelect>
               </div>
               <div class="col">
-                <BFormSelect v-model="formData.owner_id" :options="owners" id="owner" class="mb-3">
+                <BFormSelect
+                  v-model="formData.owner_id"
+                  :options="owners"
+                  id="owner"
+                  class="mb-3"
+                >
                   <!-- This slot appears above the options from 'options' prop -->
                   <template #first>
-                    <BFormSelectOption :value="null" disabled>-- Egasi --</BFormSelectOption>
+                    <BFormSelectOption :value="null" disabled
+                      >-- Egasi --</BFormSelectOption
+                    >
                   </template>
                 </BFormSelect>
               </div>
@@ -307,25 +445,25 @@
       </div>
     </div>
 
-<!-- Table -->
+    <!-- Table -->
     <div class="mt-5">
       <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
         <div class="card-body">
           <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
-          <BTbody>
-            <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
-              <BTd>{{ row[0] }}</BTd>
-              <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
-                {{ count }}
-              </BTd>
-            </BTr>
-          </BTbody>
-        </BTableSimple>
+            <BTbody>
+              <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+                <BTd>{{ row[0] }}</BTd>
+                <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
+                  {{ count }}
+                </BTd>
+              </BTr>
+            </BTbody>
+          </BTableSimple>
         </div>
       </div>
     </div>
 
-<!-- List -->
+    <!-- List -->
     <div class="mt-5">
       <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
         <div class="card-body">
@@ -342,23 +480,21 @@
                 <BTh scope="col">Depoga kelgan vaqti</BTh>
                 <BTh scope="col">Status</BTh>
                 <BTh scope="col">Izoh</BTh>
-                <BTh scope="col" class="d-flex justify-content-center">
-                  Action
-                </BTh>
+                <BTh scope="col" class="d-flex justify-content-center"> Action </BTh>
               </BTr>
             </BThead>
             <BTbody>
-              <BTr class="align-middle" v-for="(item, index) in Data" :key="item._id" >
-                <BTh class="id-tr" >{{ index + 1 }}</BTh>
-                <BTd >{{ item?.nomer }}</BTd>
-                <BTd >{{ item?.year }}</BTd>
-                <BTd >{{ item?.vagon_type_id?.name }}</BTd>
-                <BTd >{{ item?.repair_type_id?.name }}</BTd>
-                <BTd >{{ item?.owner_id?.name }}</BTd>
-                <BTd >{{ item?.depo_id?.name }}</BTd>
-                <BTd >{{ item?.createdAt }}</BTd>
-                <BTd >{{ item?.status }}</BTd>
-                <BTd >{{ item?.remain_comment }}</BTd>
+              <BTr class="align-middle" v-for="(item, index) in Data" :key="item._id">
+                <BTh class="id-tr">{{ index + 1 }}</BTh>
+                <BTd>{{ item?.nomer }}</BTd>
+                <BTd>{{ item?.year }}</BTd>
+                <BTd>{{ item?.vagon_type_id?.name }}</BTd>
+                <BTd>{{ item?.repair_type_id?.name }}</BTd>
+                <BTd>{{ item?.owner_id?.name }}</BTd>
+                <BTd>{{ item?.depo_id?.name }}</BTd>
+                <BTd>{{ item?.createdAt }}</BTd>
+                <BTd>{{ item?.status }}</BTd>
+                <BTd>{{ item?.remain_comment }}</BTd>
                 <BTd class="d-flex justify-content-center">
                   <button @click="getOne(item._id)" class="btn btn-primary m-0">
                     <i class="bi bi-pen-fill"></i>
@@ -444,27 +580,26 @@ const inputData = ref({
   input_comment: null,
 });
 
-
 const makeFormNull = () => {
-  formData.value._id = null,
-  formData.value.nomer = null,
-  formData.value.vagon_type_id = null,
-  formData.value.repair_type_id = null,
-  formData.value.owner_id = null,
-  formData.value.year = null,
-  formData.value.depo_id = null,
-  formData.value.remain_comment = null,
-  formData.value.depo_id = null;
-}
+  (formData.value._id = null),
+    (formData.value.nomer = null),
+    (formData.value.vagon_type_id = null),
+    (formData.value.repair_type_id = null),
+    (formData.value.owner_id = null),
+    (formData.value.year = null),
+    (formData.value.depo_id = null),
+    (formData.value.remain_comment = null),
+    (formData.value.depo_id = null);
+};
 
 //create
 const handleOk = async () => {
   try {
-    alert("Saqlamoqchi")
+    alert("Saqlamoqchi");
     let res = await axios.post("/vagon/create", formData.value);
     if (res.data) {
       modalCreate.value = !modalCreate.value;
-      makeFormNull()
+      makeFormNull();
       getAll();
       getVagonTable();
     }
@@ -527,7 +662,7 @@ const handleUpdate = async () => {
     if (res) {
       getAll();
       modalUpdate.value = !modalUpdate.value;
-      makeFormNull()
+      makeFormNull();
     }
   } catch (error) {
     console.error(error);
@@ -593,19 +728,18 @@ let getAllRepairTypes = async () => {
 //getVagonTable
 let getVagonTable = async () => {
   try {
-    const res = await axios.get('/vagon/get-vagon-table'); // Replace with your API endpoint
+    const res = await axios.get("/vagon/get-vagon-table/remain"); // Replace with your API endpoint
 
     tableDatas.value = res.data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
   }
 };
 
-
 // addInputData;
 let addInputData = async (id) => {
-  inputData.value.vagon_id = id
-  modalInputData.value = !modalInputData.value
+  inputData.value.vagon_id = id;
+  modalInputData.value = !modalInputData.value;
 };
 
 const makeInputDataNull = () => {
@@ -644,15 +778,14 @@ const makeInputDataNull = () => {
   inputData.value.input_comment = null;
 };
 
-
 //Create Input Data
 const handleInputData = async () => {
   try {
-    alert("Saqlamoqchi")
-    let res = await axios.post('/vagon-input-data/create', inputData.value);
+    alert("Saqlamoqchi");
+    let res = await axios.post("/vagon-input-data/create", inputData.value);
     if (res.data) {
       modalInputData.value = !modalInputData.value;
-      makeInputDataNull()
+      makeInputDataNull();
       router.push({ path: "/vagon/repairing-vagons" });
     }
   } catch (error) {
@@ -661,17 +794,17 @@ const handleInputData = async () => {
 };
 
 onMounted(() => {
-   getAll();
-   getVagonTable();
-   getAllDepos();
-   getAllOwners();
-   getAllVagonTypes();
-   getAllRepairTypes();
+  getAll();
+  getVagonTable();
+  getAllDepos();
+  getAllOwners();
+  getAllVagonTypes();
+  getAllRepairTypes();
 });
 
 watchEffect(() => {
   getVagonTable();
-})
+});
 </script>
 
 <style lang="scss" scoped>

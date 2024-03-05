@@ -51,6 +51,11 @@ const router = createRouter({
                     path: "/vagon/repairing-vagons",
                     name: "/vagon/repairing-vagons",
                     component: () => import("../views/RepairingVagons.vue"),
+                },
+                {
+                    path: "/vagons/repaired-vagons",
+                    name: "/vagons/repaired-vagons",
+                    component: () => import("../views/RepairedVagons.vue"),
                 }
             ],
         },

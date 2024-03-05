@@ -106,7 +106,7 @@ module.exports = {
         }
     },
 
-    generateVagonTable: async (req, res) => {
+    generateRemainVagonTable: async (req, res) => {
         try {
             const depoList = await Depo.find();
             const vagonTypes = await VagonType.find();
@@ -126,6 +126,43 @@ module.exports = {
                 vagon_type_id: vagonType._id,
                 depo_id: depo._id,
                 status: 'remain'
+                });
+
+                row.push(vagonCount);
+                totalVagonCount += vagonCount;
+            }
+
+            row.push(totalVagonCount);
+                tableData.push(row);
+            }
+
+            res.json(tableData);
+        } catch (error) {
+          console.error('Error:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+
+    generateRepairedVagonTable: async (req, res) => {
+        try {
+            const depoList = await Depo.find();
+            const vagonTypes = await VagonType.find();
+            let tableData = [['Vagon Type', 'Total']];
+
+            depoList.forEach((depo) => {
+                tableData[0].splice(-1, 0, depo.name); // Insert depo.name before the 'Total' column
+            });
+
+            // Construct the table body
+            for (const vagonType of vagonTypes) {
+            const row = [vagonType.name];
+            let totalVagonCount = 0;
+
+            for (const depo of depoList) {
+                const vagonCount = await VagonModel.countDocuments({
+                vagon_type_id: vagonType._id,
+                depo_id: depo._id,
+                status: 'repaired'
                 });
 
                 row.push(vagonCount);

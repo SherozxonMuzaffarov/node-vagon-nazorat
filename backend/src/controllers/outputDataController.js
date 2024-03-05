@@ -7,23 +7,9 @@ const myCache = require('../../utils/nodeCache');
 module.exports = {
     getAll: async (req, res) => {
         try {
-            let models = await OutputData.find().populate({
-                path: 'vagon_id',
-                model: 'Vagon', 
-                match: { status: 'repairing' },
-                populate: [
-                    {
-                        path: 'vagon_type_id',
-                        model: 'VagonType',
-                        select: 'name',
-                    },
-                    {
-                        path: 'repair_type_id',
-                        model: 'RepairType',
-                        select: 'name',
-                    },
-                ],
-            });
+            const models = await Vagon.find({ status: 'repaired' })
+                                        .populate('input_data_id output_data_id owner_id vagon_type_id repair_type_id')
+                                        .exec();
             res.send(models);
         } catch (error) {
             console.error(error);
@@ -50,19 +36,17 @@ module.exports = {
     create: async (req, res) => {
         const { vagon_id } = req.body
         try {
+            let model = await OutputData.create(req.body);
+
             let updatedModel = await Vagon.findByIdAndUpdate(
                 {_id: vagon_id},
                 {
-                    status: 'repaired'
+                    status: 'repaired',
+                    output_data_id: model._id
                 },
                 { new: true }
             );
-
-            console.log("updatedModel: " + updatedModel);
             
-            let model = await OutputData.create(req.body);
-            
-            console.log("CreatedOutput: " + model);
             res.json(model);
         } catch (error) {
             console.error(error);

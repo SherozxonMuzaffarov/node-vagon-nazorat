@@ -84,7 +84,7 @@
             </div>
           </BCollapse>
   
-          <!-- Shablonlar Section -->
+          <!-- Vagonlar nazorati Section -->
           <BButton v-b-toggle="'collapse-1'" class="mt-2" variant="primary w-100">
             <i class="bi bi-box"></i> Vagonlar nazorati
           </BButton>
@@ -92,18 +92,24 @@
           <!-- Collapse Element for Section -->
           <BCollapse id="collapse-1" class="mt-1">
             <div class="card p-1">
-              <!-- Sexdagi Link -->
+              <!-- Qoldiq vagonlar Link -->
               <BButton variant="outline-link m-0" @click="click">
                 <router-link to="/remain-vagons" class="text-decoration-none w-100">
                   Qoldiq vagonlar
                 </router-link>
               </BButton>
   
-              <!-- Skladdagi Link -->
+              <!-- Tamirga olingan vagonlar  -->
               <BButton variant="outline-link m-0" @click="click">
                 <router-link to="/vagon/repairing-vagons" class="text-decoration-none w-100">
-                  Tamirga olingan vagonlar
+                  Ta'mirga olingan vagonlar
                 </router-link>
+              </BButton>
+
+              <BButton variant="outline-link m-0" @click="click">
+                    <router-link to="/vagons/repaired-vagons" class="text-decoration-none w-100">
+                      Ta'mir bo'yicha ma'lumot
+                    </router-link>
               </BButton>
             </div>
           </BCollapse>
@@ -114,7 +120,6 @@
           </BButton>
         </div>
       </BOffcanvas>
-  
       <!-- Main Content -->
       <RouterView />
     </div>
