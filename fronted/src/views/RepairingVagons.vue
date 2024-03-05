@@ -195,11 +195,11 @@
           <div class="card-body table-responsive">
             <div class="align-middle row" >
               <!-- Inner Card -->
-              <div class="card shadow-sm m-3 col-3" style="overflow: auto; white-space: nowrap" v-for="(item) in Data" :key="item._id">
+              <div class="card shadow-sm m-3 col" style="overflow: auto; white-space: nowrap" v-for="(item) in Data" :key="item._id">
                 <div class="card-header ">
-                  {{ item.vagon_id?.nomer }}
-                  {{ item.vagon_id?.vagon_type_id?.name }}
-                  {{ item.vagon_id?.repair_type_id?.name }}
+                  {{ item.nomer }}
+                  {{ item.vagon_type_id?.name }}
+                  {{ item.repair_type_id?.name }}
                 </div>
                 <div class="card-body">
                   <!-- Yon ramalari -->
@@ -212,59 +212,36 @@
                         <p class="card-text my-0">Nomeri</p>
                       </div>
                       <div class="col">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">1-o'ng yon ramalari</h6> 
-                        <p class="card-text my-0">{{ item.ramaRight1Year }}</p>
-                        <p class="card-text my-0">{{ item.ramaRight1Number }}</p>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">1-o'ng</h6> 
+                        <p class="card-text my-0">{{ item.input_data_id?.ramaRight1Year }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.ramaRight1Number }}</p>
                       </div>
                       <div class="col">
-                      <h6 class="card-subtitle mb-2 text-body-secondary">2-o'ng yon ramalari</h6> 
-                        <p class="card-text my-0 ">{{ item.ramaRight2Year }}</p>
-                        <p class="card-text my-0">{{ item.ramaRight2Number }}</p>
-                      </div>
-                    </div>
-                    <div class="row mt-3">
-                      <div class="col-2">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
-                        <p class="card-text my-0">Yili</p>
-                        <p class="card-text my-0">Nomeri</p>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">2-o'ng </h6> 
+                        <p class="card-text my-0 ">{{ item.input_data_id?.ramaRight2Year }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.ramaRight2Number }}</p>
                       </div>
                       <div class="col">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">1-chap yon ramalari</h6> 
-                        <p class="card-text my-0">{{ item.ramaLeft1Year }}</p>
-                        <p class="card-text my-0">{{ item.ramaLeft1Number }}</p>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">1-chap</h6> 
+                        <p class="card-text my-0">{{ item.input_data_id?.ramaLeft1Year }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.ramaLeft1Number }}</p>
                       </div>
                       <div class="col">
-                      <h6 class="card-subtitle mb-2 text-body-secondary">2-chap yon ramalari</h6> 
-                        <p class="card-text my-0 ">{{ item.ramaLeft2Year }}</p>
-                        <p class="card-text my-0">{{ item.ramaLeft2Number }}</p>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">2-chap</h6> 
+                        <p class="card-text my-0 ">{{ item.input_data_id?.ramaLeft2Year }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.ramaLeft2Number }}</p>
                       </div>
-                    </div>
-                  </div>
-                  <!-- Ressor ustki balkasi -->
-                  <div>
-                    <h6 class="card-title mt-4">Ressor ustki balkasi</h6>
-                    <div class="row">
-                      <div class="col">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
-                        <p class="card-text my-0">Yili</p>
-                        <p class="card-text my-0">Nomeri</p>
-                      </div>
+                      
                       <div class="col">
                         <h6 class="card-subtitle mb-2 text-body-secondary">1-balka</h6> 
-                        <p class="card-text my-0">{{ item.balka1Year }}</p>
-                        <p class="card-text my-0">{{ item.balka1Number }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.balka1Year }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.balka1Number }}</p>
                       </div>
                       <div class="col">
-                      <h6 class="card-subtitle mb-2 text-body-secondary">2-balka</h6> 
-                      <p class="card-text my-0">{{ item.balka2Year }}</p>
-                        <p class="card-text my-0">{{ item.balka2Number }}</p>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">2-balka</h6> 
+                        <p class="card-text my-0">{{ item.input_data_id?.balka2Year }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.balka2Number }}</p>
                       </div>
-                    </div>
-                  </div>
-                  <!-- G'ildirak juftliklari -->
-                  <div>
-                    <h6 class="card-title mt-4">G'ildirak juftliklari</h6>
-                    <div class="row">
                       <div class="col">
                         <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
                         <p class="card-text my-0">Tegishliligi</p>
@@ -272,45 +249,33 @@
                       </div>
                       <div class="col">
                         <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 1</h6> 
-                        <p class="card-text my-0">{{ item.gildirak1 }}</p>
-                        <p class="card-text my-0">{{ item.gildirak1Number }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak1 }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak1Number }}</p>
                       </div>
                       <div class="col">
                         <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 2</h6> 
-                        <p class="card-text my-0">{{ item.gildirak2 }}</p>
-                        <p class="card-text my-0">{{ item.gildirak2Number }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak2 }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak2Number }}</p>
                       </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 3</h6> 
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak3 }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak3Number }}</p>
                       </div>
-                      <div class="row mt-4">
-                        <div class="col">
-                          <h6 class="card-subtitle mb-2 text-body-secondary">Nomi</h6> 
-                          <p class="card-text my-0">Tegishliligi</p>
-                          <p class="card-text my-0">Nomeri</p>
-                        </div>
-                        <div class="col">
-                          <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 3</h6> 
-                          <p class="card-text my-0">{{ item.gildirak3 }}</p>
-                          <p class="card-text my-0">{{ item.gildirak3Number }}</p>
-                        </div>
-                        <div class="col">
-                          <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 4</h6> 
-                          <p class="card-text my-0">{{ item.gildirak4 }}</p>
-                          <p class="card-text my-0">{{ item.gildirak4Number }}</p>
-                        </div>
+                      <div class="col">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">g'ildirak 4</h6> 
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak4 }}</p>
+                        <p class="card-text my-0">{{ item.input_data_id?.gildirak4Number }}</p>
                       </div>
-                    <div class="row mt-4">
-
-                    <div class="col">
-                      Izoh: {{ item.input_comment }}
                     </div>
-                  </div>   
-                  </div>                            
+                  </div>
+                  <!-- G'ildirak juftliklari -->                        
                 </div>
                 <div class="card-footer">
-                  <button @click="getOne(item._id)" class="btn btn-primary m-0">
+                  <button @click="getOne(item.input_data_id?._id)" class="btn btn-primary m-0">
                     <i class="bi bi-pen-fill"></i>
                   </button>
-                  <button @click="addOutputData(item.vagon_id._id)" class="btn btn-success m-0">
+                  <button @click="addOutputData(item.input_data_id?.vagon_id)" class="btn btn-success m-0">
                     <i class="bi bi-arrow-up-right-square-fill"></i>
                   </button>
                   <a href="#" class="card-link">Card link</a>
@@ -455,9 +420,6 @@ let addOutputData = async (id) => {
   inputData.value.vagon_id = id
   modalOutputData.value = !modalOutputData.value
 };
-
-
-
 
 // Create OutPut Data
 const handleOutputData = async () => {

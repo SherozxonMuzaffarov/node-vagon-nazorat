@@ -1,4 +1,6 @@
+const { models } = require('mongoose');
 const InputData = require('../../models/inputData');
+const OutputData = require('../../models/outputData');
 const Vagon = require('../../models/vagon');
 const VagonType = require('../../models/vagonType');
 
@@ -8,27 +10,9 @@ const myCache = require('../../utils/nodeCache');
 module.exports = {
     getAll: async (req, res) => {
         try {
-            let models = await InputData.find().populate({
-                path: 'vagon_id',
-                model: 'Vagon',
-                populate: [
-                    {
-                        path: 'vagon_type_id',
-                        model: 'VagonType',
-                        select: 'name',
-                    },
-                    {
-                        path: 'repair_type_id',
-                        model: 'RepairType',
-                        select: 'name',
-                    },
-                ],
-            });
-            
-            // models = models.filter((item) => item.vagon_id.status == 'repairing')
-            
-            console.log(models);
-
+            const models = await Vagon.find({ status: 'repairing' })
+                                        .populate('input_data_id owner_id vagon_type_id repair_type_id')
+                                        .exec();
             res.send(models);
         } catch (error) {
             console.error(error);
@@ -55,15 +39,16 @@ module.exports = {
     create: async (req, res) => {
         const { vagon_id } = req.body
         try {
+            let model = await InputData.create(req.body);
+
             let updatedModel = await Vagon.findByIdAndUpdate(
                 {_id: vagon_id},
                 {
-                    status: 'repairing'
+                    status: 'repairing',
+                    input_data_id: model._id
                 },
                 { new: true }
             );
-
-            let model = await InputData.create(req.body);
 
             res.json(model);
         } catch (error) {
@@ -75,7 +60,7 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { id } = req.params; 
-            console.log('Id: ' + id);    
+            
             let updatedModel = await InputData.findByIdAndUpdate(
                 id,
                 req.body,

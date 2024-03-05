@@ -463,9 +463,10 @@ const handleOk = async () => {
     alert("Saqlamoqchi")
     let res = await axios.post("/vagon/create", formData.value);
     if (res.data) {
-      getAll();
       modalCreate.value = !modalCreate.value;
       makeFormNull()
+      getAll();
+      getVagonTable();
     }
   } catch (error) {
     console.error(error);
