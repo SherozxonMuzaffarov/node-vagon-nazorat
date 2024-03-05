@@ -233,6 +233,7 @@
         <div class="card-body table-responsive">
           <div class="align-middle row">
             <!-- Inner Card -->
+            
             <div
               class="card shadow-sm m-3 col-12"
               style="overflow: auto; white-space: nowrap"
