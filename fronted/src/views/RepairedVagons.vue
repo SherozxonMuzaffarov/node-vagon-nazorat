@@ -199,9 +199,54 @@
     <!-- Modal Repair -->
 
 
-    <!-- Table -->
-    <div class="mt-5">
-      <div class="card shadow-sm" style="overflow: auto; white-space: nowrap">
+    <!-- Table DR -->
+    <div class="mt-2">
+      <div class="card shadow-s container bg-yellow d-flex justify-content-center text-black" style="overflow: auto; white-space: nowrap">
+        <div class="card-header ">
+          <h5>Depo ta'mir(ДР)</h5>
+        </div>
+        <div class="card-body">
+          <BTableSimple striped="true" hover="true" bordered="true" class="">
+            <BTbody>
+              <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+                <BTd>{{ row[0] }}</BTd>
+                <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
+                  {{ count }}
+                </BTd>
+              </BTr>
+            </BTbody>
+          </BTableSimple>
+        </div>
+      </div>
+    </div>
+    
+    <!--Kr Table -->
+    <div class="mt-2">
+      <div class="card shadow-s container bg-yellow d-flex justify-content-center text-black" style="overflow: auto; white-space: nowrap">
+        <div class="card-header ">
+          <h5>Kapital ta'mir(КР)</h5>
+        </div>
+        <div class="card-body">
+          <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
+            <BTbody>
+              <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+                <BTd>{{ row[0] }}</BTd>
+                <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
+                  {{ count }}
+                </BTd>
+              </BTr>
+            </BTbody>
+          </BTableSimple>
+        </div>
+      </div>
+    </div>
+
+    <!--Krp Table -->
+    <div class="mt-2">
+      <div class="card shadow-s container bg-yellow d-flex justify-content-center text-black" style="overflow: auto; white-space: nowrap">
+        <div class="card-header ">
+          <h5>KRP(КРП)</h5>
+        </div>
         <div class="card-body">
           <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
             <BTbody>
@@ -223,13 +268,6 @@
         class="card shadow-sm"
         style="overflow: auto; white-space: nowrap; height: 100vh"
       >
-        <div class="card-header">
-          <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item" v-for="item in depos" :key="item.value">
-              <a class="nav-link" href="#">{{ item.text }}</a>
-            </li>
-          </ul>
-        </div>
         <div class="card-body table-responsive">
           <div class="align-middle row">
             <!-- Inner Card -->
