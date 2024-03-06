@@ -52,6 +52,16 @@
                 </router-link>
               </BButton>
 
+              <!-- OWners Company-->
+              <BButton
+                variant="outline-link m-0"
+                @click="click"
+              >
+                <router-link to="/owner-company" class="text-decoration-none w-100">
+                  Vagon Firma egasi
+                </router-link>
+              </BButton>
+
               <!-- Vagon type -->
               <BButton
                 variant="outline-link m-0"

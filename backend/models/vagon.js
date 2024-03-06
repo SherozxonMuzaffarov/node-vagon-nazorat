@@ -41,12 +41,10 @@ const vagonSchema = new mongoose.Schema({
     input_data_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'InputData',
-        unique: true,
     },
     output_data_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OutputData',
-        unique: true,
     }
 },{
     timestamps: true

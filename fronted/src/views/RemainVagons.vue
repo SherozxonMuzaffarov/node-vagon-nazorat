@@ -65,6 +65,20 @@
           </BFormSelect>
         </div>
         <div class="col-6">
+          <label for="ownerCompanies" class="form-label">Firma egasi</label>
+          <BFormSelect
+            v-model="formData.owner_company_id"
+            :options="ownerCompanies"
+            id="ownerCompanies"
+            class="mb-3"
+          >
+            <!-- This slot appears above the options from 'options' prop -->
+            <template #first>
+              <BFormSelectOption :value="null" disabled>-- Firma egasi --</BFormSelectOption>
+            </template>
+          </BFormSelect>
+        </div>
+        <div class="col-6">
           <label for="owner" class="form-label">Egasi</label>
           <BFormSelect
             v-model="formData.owner_id"
@@ -78,7 +92,7 @@
             </template>
           </BFormSelect>
         </div>
-        <div class="col">
+        <div class="col-6">
           <label for="remainComment" class="form-label">Izoh</label>
           <BFormInput
             v-model="formData.remain_comment"
@@ -152,6 +166,20 @@
           </BFormSelect>
         </div>
         <div class="col-6">
+          <label for="ownerCompanies" class="form-label">Firma egasi</label>
+          <BFormSelect
+            v-model="formData.owner_company_id"
+            :options="ownerCompanies"
+            id="ownerCompanies"
+            class="mb-3"
+          >
+            <!-- This slot appears above the options from 'options' prop -->
+            <template #first>
+              <BFormSelectOption :value="null" disabled>-- Firma egasi --</BFormSelectOption>
+            </template>
+          </BFormSelect>
+        </div>
+        <div class="col-6">
           <label for="owner" class="form-label">Egasi</label>
           <BFormSelect
             v-model="formData.owner_id"
@@ -165,7 +193,7 @@
             </template>
           </BFormSelect>
         </div>
-        <div class="col">
+        <div class="col-6">
           <label for="remainComment" class="form-label">Izoh</label>
           <BFormInput
             v-model="formData.remain_comment"
@@ -528,6 +556,7 @@ const modalInputData = ref(false);
 const Data = ref([]);
 let depos = ref([]);
 let owners = ref([]);
+let ownerCompanies = ref([]);
 let vagonTypes = ref([]);
 let repairTypes = ref([]);
 
@@ -539,6 +568,7 @@ const formData = ref({
   vagon_type_id: null,
   repair_type_id: null,
   owner_id: null,
+  owner_company_id: null,
   year: null,
   depo_id: null,
   remain_comment: null,
@@ -697,6 +727,20 @@ let getAllOwners = async () => {
   }
 };
 
+//getAllOwnerCompanys
+let getAllOwnerCompanys = async () => {
+  try {
+    let res = await axios.get("/owner-company/all");
+    if (res.data) {
+      ownerCompanies.value = res.data.map(function (item) {
+        return { text: item.name, value: item._id };
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 //getAllVagonTypes
 let getAllVagonTypes = async () => {
   try {
@@ -798,6 +842,7 @@ onMounted(() => {
   getVagonTable();
   getAllDepos();
   getAllOwners();
+  getAllOwnerCompanys();
   getAllVagonTypes();
   getAllRepairTypes();
 });

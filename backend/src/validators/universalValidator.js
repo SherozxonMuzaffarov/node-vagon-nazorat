@@ -32,6 +32,7 @@ module.exports = {
             vagon_type_id: Joi.optional(),
             repair_type_id: Joi.optional(),
             owner_id: Joi.optional(),
+            owner_company_id: Joi.optional(),
             year: Joi.optional(),
             depo_id: Joi.optional(),
             remain_comment: Joi.optional(),

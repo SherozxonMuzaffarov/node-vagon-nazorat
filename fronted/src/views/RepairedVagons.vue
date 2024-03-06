@@ -208,7 +208,7 @@
         <div class="card-body">
           <BTableSimple striped="true" hover="true" bordered="true" class="">
             <BTbody>
-              <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+              <BTr v-for="(row, rowIndex) in tableDatasDr" :key="rowIndex">
                 <BTd>{{ row[0] }}</BTd>
                 <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
                   {{ count }}
@@ -229,7 +229,7 @@
         <div class="card-body">
           <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
             <BTbody>
-              <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+              <BTr v-for="(row, rowIndex) in tableDatasKr" :key="rowIndex">
                 <BTd>{{ row[0] }}</BTd>
                 <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
                   {{ count }}
@@ -250,7 +250,7 @@
         <div class="card-body">
           <BTableSimple striped="true" hover="true" bordered="true" class="mt-4">
             <BTbody>
-              <BTr v-for="(row, rowIndex) in tableDatas" :key="rowIndex">
+              <BTr v-for="(row, rowIndex) in tableDatasKrp" :key="rowIndex">
                 <BTd>{{ row[0] }}</BTd>
                 <BTd v-for="(count, columnIndex) in row.slice(1)" :key="columnIndex">
                   {{ count }}
@@ -510,47 +510,12 @@
 import { ref, onMounted, watchEffect } from "vue";
 import axios from "axios";
 const modalOutputDataUpdate = ref(false);
-const modalOutputData = ref(false);
 const Data = ref([]);
 
 let depos = ref([]);
-let tableDatas = ref([]);
-
-const inputData = ref({
-  vagon_id: null,
-
-  ramaRight1Year: null,
-  ramaRight1Number: null,
-
-  ramaRight2Year: null,
-  ramaRight2Number: null,
-
-  ramaLeft1Year: null,
-  ramaLeft1Number: null,
-
-  ramaLeft2Year: null,
-  ramaLeft2Number: null,
-
-  balka1Year: null,
-  balka1Number: null,
-
-  balka2Year: null,
-  balka2Number: null,
-
-  gildirak1: null,
-  gildirak1Number: null,
-
-  gildirak2: null,
-  gildirak2Number: null,
-
-  gildirak3: null,
-  gildirak3Number: null,
-
-  gildirak4: null,
-  gildirak4Number: null,
-
-  input_comment: null,
-});
+let tableDatasDr = ref([]);
+let tableDatasKr = ref([]);
+let tableDatasKrp = ref([]);
 
 const outputData = ref({
   vagon_id: null,
@@ -589,11 +554,31 @@ const outputData = ref({
 });
 
 //getVagonTable
-let getVagonTable = async () => {
+let getVagonTableDr = async () => {
   try {
-    const res = await axios.get("/vagon/get-vagon-table/repaired");
+    const res = await axios.get("/vagon/get-vagon-table/repaired/dr");
 
-    tableDatas.value = res.data;
+    tableDatasDr.value = res.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+//getVagonTable
+let getVagonTableKr = async () => {
+  try {
+    const res = await axios.get("/vagon/get-vagon-table/repaired/kr");
+
+    tableDatasKr.value = res.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+//getVagonTable
+let getVagonTableKrp = async () => {
+  try {
+    const res = await axios.get("/vagon/get-vagon-table/repaired/krp");
+
+    tableDatasKrp.value = res.data;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -678,25 +663,7 @@ const updateInputData = async () => {
   }
 };
 
-// addInputData;
-let addOutputData = async (id) => {
-  inputData.value.vagon_id = id;
-  modalOutputData.value = !modalOutputData.value;
-};
 
-// Create OutPut Data
-const handleOutputData = async () => {
-  try {
-    let res = await axios.post("/vagon-output-data/create/", inputData.value);
-    if (res) {
-      getAll();
-      modalOutputData.value = !modalOutputData.value;
-      makeOutputDataNull();
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 //getAllDepos
 let getAllDepos = async () => {
@@ -715,7 +682,9 @@ let getAllDepos = async () => {
 onMounted(() => {
   getAll();
   getAllDepos();
-  getVagonTable();
+  getVagonTableDr();
+  getVagonTableKr();
+  getVagonTableKrp();
 });
 </script>
 
